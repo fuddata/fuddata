@@ -1,0 +1,22 @@
+baseURL = "https://fuddata.com"
+languageCode = "en-us"
+title = "Fuddata Limited"
+themesDir = "themes"
+theme = "hugo-hero-theme"
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.92.0"
+    
+[params]
+  google_analytics_id=""
+
+[[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 1
+
+[permalinks]
+  post = "/:year/:month/:day/:slug/"
+  pages = "/:filename/"
