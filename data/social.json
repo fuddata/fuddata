@@ -3,5 +3,10 @@
         "name": "Github",
         "link": "https://github.com/fuddata/fuddata.github.io",
         "image": "social/github.svg"
+    },
+    {
+        "name": "Hello",
+        "link": "https://github.com/fuddata/hello/releases/download/v1.0/hello_signed.exe",
+        "image": "hello.png"
     }
 ]
