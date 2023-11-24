@@ -2,7 +2,7 @@ baseURL = "https://fuddata.com"
 languageCode = "en-us"
 title = "Fuddata Limited"
 themesDir = "themes"
-theme = "hugo-hero-theme"
+theme = "tailbliss"
 
 [module]
   [module.hugoVersion]

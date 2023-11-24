@@ -12,9 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install postcss-cli tailwindcss autoprefixer
+
       - name: Install extended version of Hugo
         run: |
-          wget -o /dev/null https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-amd64.deb -O /tmp/hugo.deb
+          wget -o /dev/null https://github.com/gohugoio/hugo/releases/download/v0.120.4/hugo_extended_0.120.4_linux-amd64.deb -O /tmp/hugo.deb
           sudo dpkg -i /tmp/hugo.deb
 
       - name: Generate Hugo pages

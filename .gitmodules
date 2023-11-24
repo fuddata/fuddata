@@ -1,3 +1,4 @@
-[submodule "themes/hugo-hero-theme"]
-	path = themes/hugo-hero-theme
-	url = https://github.com/zerostaticthemes/hugo-hero-theme
+[submodule "themes/tailbliss"]
+	path = themes/tailbliss
+	url = https://github.com/nusserstudios/tailbliss
+	branch = v0.5
