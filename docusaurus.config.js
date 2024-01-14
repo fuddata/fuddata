@@ -23,6 +23,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          editUrl: 'https://github.com/fuddata/fuddata.github.io/main/',
         },
         blog: {
           showReadingTime: true,
@@ -40,7 +41,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Fuddata',
+        title: '',
         logo: {
           alt: 'Fuddata Logo',
           src: 'img/logo.svg',
@@ -49,12 +50,16 @@ const config = {
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
-            position: 'left',
+            position: 'right',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/fuddata/fuddata.github.io',
+            to: '/blog',
+            label: 'Blog',
+            position: 'right'
+          },
+          {
+            href: 'https://github.com/fuddata',
             label: 'GitHub',
             position: 'right',
           },
