@@ -39,6 +39,13 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+h1 {
+  color: #ffffff;
+}
+.hero__subtitle {
+  color: #ffffff;
+}
+
 /*
 .navbar__items {
   width: 100rem;
