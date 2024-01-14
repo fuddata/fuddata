@@ -48,6 +48,11 @@ const config = {
         },
         items: [
           {
+            to: '/contact',
+            label: 'Contact',
+            position: 'right',
+          },
+          {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'right',
