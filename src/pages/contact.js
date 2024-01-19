@@ -21,7 +21,7 @@ export default function Home() {
       <ContactHeader />
       <main>
         <br />
-        <div className={styles.contact}>
+        <div className={styles.center}>
             Email: <img src="/img/contact-email.png" />
         </div>
       </main>

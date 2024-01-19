@@ -1,0 +1,31 @@
+import React from 'react';
+import Head from '@docusaurus/Head';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+
+export default function Root({children}) {
+  const {
+    siteConfig: {customFields},
+  } = useDocusaurusContext();
+
+  // Handle auto download on trial page
+  if (location.pathname.startsWith("/") && location.pathname.endsWith("-trial") ) {
+    const pathVariable = location.pathname.replace(/\/|-/g, "");
+    var downloadUrl = customFields[pathVariable];
+    if (!downloadUrl) {
+        return <div>Download URL not found</div>;
+    }
+    return (
+        <>
+            <Head>
+                <meta
+                http-equiv="refresh"
+                content={`0; url=${downloadUrl}`}
+                />
+            </Head>
+          {children}
+        </>
+    );
+  }
+
+  return <>{children}</>;
+}
