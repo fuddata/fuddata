@@ -25,6 +25,7 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <ContactHeader />
       <main>
+        <br />
         <div className={styles.contact}>
             Email: <img src="/img/contact-email.png" />
         </div>
