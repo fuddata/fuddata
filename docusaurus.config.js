@@ -15,6 +15,9 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  customFields: {
+    checkoutApi: process.env.CHECKOUTAPI,
+  },
 
   presets: [
     [
