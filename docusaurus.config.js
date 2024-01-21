@@ -19,6 +19,7 @@ const config = {
     checkoutApi: process.env.CHECKOUTAPI,
     products: {
       helloUrl: 'https://github.com/fuddata/hello/releases/download/v1.0/hello_signed.exe',
+      helloId: '26384',
     },
   },
 

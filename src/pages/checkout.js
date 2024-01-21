@@ -22,7 +22,7 @@ async function CreateOrder() {
   const {
     siteConfig: {customFields},
   } = useDocusaurusContext();
-  const tokenResponse = await fetch(customFields.checkoutApi);
+  const tokenResponse = await fetch(customFields.checkoutApi + "/?productid=26384");
   const token = await tokenResponse.text();
   return token;
 }
@@ -36,7 +36,6 @@ function CardCheckout() {
     }
   });
 }
-
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
