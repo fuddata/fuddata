@@ -11,7 +11,7 @@ export default function Home() {
       <main>
         <br />
         <Download 
-          url={"https://github.com/fuddata/hello/releases/download/v1.0/hello_signed.exe"}
+          url={"helloUrl"}
         />
       </main>
     </Layout>

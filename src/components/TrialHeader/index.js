@@ -8,7 +8,7 @@ export default function TrialHeader({ app }) {
       <div className="container">
         <Heading as="h1" className="hero__title">Trial</Heading>
         <p className="hero__subtitle">Thank you downloading <u>{app}</u></p>
-        If your download does not start after 30 second, click the link below to download manually!
+        If your download does not start after 30 seconds, click the link below to download manually!
       </div>
     </header>
   );

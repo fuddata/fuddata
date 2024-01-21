@@ -9,8 +9,13 @@ export default function Root({children}) {
 
   // Handle auto download on trial page
   if (location.pathname.startsWith("/") && location.pathname.endsWith("-trial") ) {
-    const pathVariable = location.pathname.replace(/\/|-/g, "");
-    var downloadUrl = customFields[pathVariable];
+
+    // Convert "/hello-trial" to "helloUrl"
+    var path = location.pathname.replace(/^\//, '');
+    var firstPart = path.split('-')[0];
+    var pathVariable = firstPart + 'Url';
+    var downloadUrl = customFields.products[pathVariable];
+
     if (!downloadUrl) {
         return <div>Download URL not found</div>;
     }
