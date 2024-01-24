@@ -14,17 +14,17 @@ function CheckoutHeader() {
   );
 }
 
-async function CreateOrder() {
+async function CreateOrder(productid) {
   const {
     siteConfig: {customFields},
   } = useDocusaurusContext();
-  const tokenResponse = await fetch(customFields.checkoutApi + "/?productid=26384");
+  const tokenResponse = await fetch(customFields.checkoutApi + "/?productid=" + productid);
   const token = await tokenResponse.text();
   return token;
 }
 
-export default function CardCheckout() {
-  CreateOrder().then(token => {
+export default function CardCheckout({ productid }) {
+  CreateOrder(productid).then(token => {
     if (token != "") {
       RevolutCheckout(token, "sandbox").then((instance) => {
         instance.payWithPopup({

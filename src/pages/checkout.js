@@ -29,7 +29,9 @@ export default function Home() {
   <button>Submit</button>
 </form>
 
-          <CardCheckout />
+          <CardCheckout
+            productid={"26384"}
+          />
         </div>
       </main>
     </Layout>
