@@ -1,0 +1,11 @@
+name = "revolut-create-order"
+main = "index.js"
+compatibility_date = "2024-01-19"
+workers_dev = false
+
+[vars]
+API_URL = "https://sandbox-merchant.revolut.com/api/orders"
+API_KEY = "<key>"
+ALLOW_ORIGIN = "http://localhost:3000"
+
+PRODUCTS = { helloId="26384",helloPrice=1000,helloDesc="Hello World" , demoId="26385",demoPrice=2000,demoDesc="Demo Application" }
