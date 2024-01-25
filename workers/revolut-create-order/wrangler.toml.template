@@ -1,6 +1,6 @@
 name = "revolut-create-order"
 main = "index.js"
-compatibility_date = "2024-01-19"
+compatibility_date = "2024-01-17"
 workers_dev = false
 
 [vars]
