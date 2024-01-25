@@ -15,8 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm install          
-      - run: npm run build
+      - name: npm build
+        run: |
+          npm install
+          npm run build
+        working-directory: ./docusaurus
 
       - name: Deploy to GitHub Pages
         if: success()
