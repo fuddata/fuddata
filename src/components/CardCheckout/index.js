@@ -18,7 +18,7 @@ async function CreateOrder(productid) {
   const {
     siteConfig: {customFields},
   } = useDocusaurusContext();
-  const tokenResponse = await fetch(customFields.checkoutApi + "/?productid=" + productid);
+  const tokenResponse = await fetch(customFields.checkoutApi + "/?productid=" + productid + "&email=foo@bar3.com");
   const token = await tokenResponse.text();
   return token;
 }
