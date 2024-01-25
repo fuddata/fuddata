@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "wrangler": "^3.23.0"
+  },
+  "dependencies": {
+    "@revolut/checkout": "^1.1.17"
+  }
+}
