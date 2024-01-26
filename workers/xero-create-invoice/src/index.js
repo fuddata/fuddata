@@ -24,6 +24,29 @@ function getProductDetails(productId, env) {
   return products[productId] || null;
 }
 
+
+// Verify that email domain provided by user matches to company name got from VAT service
+// Example:
+// * Email address "john.doe@contoso.com" is valid for company "Consoso Italy LLC"
+// * Email address "tim.big@acme.it" is valid for company "Acme Limited"
+// * Email address "fake.user@gmail.com" is NOT valid for company "Company Ab"
+// * Email address "jim.carey@teliasonera.se" is valid for company "Telia Sonera Ab"
+// * Email address "jim.carey@acme.it" is valid for company "Acme Italy Limited LLC"
+function simplifyCompanyName(name) {
+  return name.toLowerCase().replace(/(inc|llc|ltd|gmbh|ab|oy|oyj|limited|\s|\.)/g, '');
+}
+function getEmailDomain(email) {
+  let domain = email.split('@')[1].split('.')[0];
+  return domain.toLowerCase();
+}
+function compareCompanyAndEmail(companyName, email) {
+  let simplifiedCompanyName = simplifyCompanyName(companyName);
+  let emailDomain = getEmailDomain(email);
+  console.log("Comparing company: '" + simplifiedCompanyName + "' to Email domain: '" + emailDomain + "'");
+  return simplifiedCompanyName.includes(emailDomain) || emailDomain.includes(simplifiedCompanyName);
+}
+
+
 export default {
   async fetch(request, env) {
     const { searchParams } = new URL(request.url);
@@ -67,6 +90,15 @@ export default {
       }
       if (vResponseJson.isValid != true) {
         return new Response("Invalid VAT code", {
+          status: 200,
+          headers: {
+            "Content-Type": "text/plain",
+            "Access-Control-Allow-Origin": env.ALLOW_ORIGIN
+          }
+        });
+      }
+      if (compareCompanyAndEmail(vResponseJson.name, paramEmail) != true) {
+        return new Response("Invalid email address", {
           status: 200,
           headers: {
             "Content-Type": "text/plain",
