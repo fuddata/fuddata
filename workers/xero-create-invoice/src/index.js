@@ -1,18 +1,12 @@
+// Generate product id => details map from environment variable like:
+// helloId="26384",helloPrice=1000,helloDesc="Hello World"
 function parseProducts(env) {
   const productMap = {};
-
-  // Iterate through each key in the environment variables
   for (const key in env) {
-      // Check if the key ends with 'Id'
       if (key.endsWith('Id')) {
-          // Extract the product name prefix (e.g., 'hello' from 'helloId')
           const prefix = key.slice(0, -2);
-
-          // Find the corresponding price and description keys
           const priceKey = prefix + 'Price';
           const descKey = prefix + 'Desc';
-
-          // Map the product ID to its price and description
           if (env[priceKey] !== undefined && env[descKey] !== undefined) {
               productMap[env[key]] = {
                   price: env[priceKey],
@@ -21,11 +15,8 @@ function parseProducts(env) {
           }
       }
   }
-
   return productMap;
 }
-
-// Function to get product details by ID
 function getProductDetails(productId, env) {
   const products = parseProducts(env);
   return products[productId] || null;
