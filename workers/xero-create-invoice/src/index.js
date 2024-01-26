@@ -26,8 +26,12 @@ export default {
   async fetch(request, env) {
     const { searchParams } = new URL(request.url)
     const paramEmail = searchParams.get('email')
-    let paramProductId = searchParams.get('productid')
-    let paramCount = searchParams.get('count')
+    const paramProductId = searchParams.get('productid')
+    const paramCount = searchParams.get('count')
+    const headersObject = Object.fromEntries(request.headers);
+    const requestHeaders = JSON.stringify(headersObject, null, 2);
+    const parsedHeaders = JSON.parse(requestHeaders);
+    const cfIpCountry = parsedHeaders["cf-ipcountry"] || "unknown";
 
     const productDetails = getProductDetails(paramProductId, env.PRODUCTS);
     if (productDetails == null) {
@@ -64,15 +68,19 @@ export default {
       method: "POST",
       headers: xeroHeaders,
     };
-    var response = await fetch("https://api.xero.com/api.xro/2.0/Contacts", init);
-    var jsonResponse = await response.json();
+    const cReponse = await fetch("https://api.xero.com/api.xro/2.0/Contacts", init);
+    const cReponseJson = await cReponse.json();
+    if (env.DEBUG_CONTACT) {
+      console.log(JSON.stringify(init.body, null,  undefined))
+      console.log(JSON.stringify(cReponseJson, null,  undefined))
+    }
 
     // TODO: Can we run this on background to safe a little bit time?
     // Add contact to contact group
     body = {
       "Contacts": [
         {
-          "ContactID": jsonResponse.Contacts[0].ContactID,
+          "ContactID": cReponseJson.Contacts[0].ContactID,
         }
       ]
     };
@@ -81,30 +89,55 @@ export default {
       method: "PUT",
       headers: xeroHeaders,
     };
-    response = await fetch("https://api.xero.com/api.xro/2.0/ContactGroups/" + env.XERO_CONTACT_GROUP_ID + "/Contacts", init);
-    await response.json();
+    const cgReponse = await fetch("https://api.xero.com/api.xro/2.0/ContactGroups/" + env.XERO_CONTACT_GROUP_ID + "/Contacts", init);
+    await cgReponse.json();
+
+    // TODO: Only call this is Country have not been already added
+    // Create tracking value
+    try {
+      body = {
+        "Name": cfIpCountry,
+      };
+      init = {
+        body: JSON.stringify(body),
+        method: "PUT",
+        headers: xeroHeaders,
+      };
+      const tResponse = await fetch("https://api.xero.com/api.xro/2.0/TrackingCategories/685fb22e-3919-460d-a7d1-a23194f7e035/Options", init);
+      await tResponse.json();
+    } catch {}
 
     // Create invoice
+    const today = new Date();
+    const dueDate = new Date();
+    dueDate.setDate(today.getDate() + 90);
+    const todayDateAsString = today.toISOString().split('T')[0];
+    const dueDateAsString = dueDate.toISOString().split('T')[0];
     body = {
       "Invoices": [
         {
           "Type": "ACCREC",
           "Contact": {
-            "ContactID": jsonResponse.Contacts[0].ContactID,
+            "ContactID": cReponseJson.Contacts[0].ContactID,
           },
           "LineItems": [
             {
-              "Description": "Acme Tires",
-              "Quantity": 2,
+              "ItemCode": paramProductId,
+              "Description": productDetails.description,
+              "Quantity": paramCount || 1,
               "UnitAmount": 20,
-              "AccountCode": "200",
-              "TaxType": "NONE",
-              "LineAmount": 40,
+              "Tracking": [
+                {
+                  "Name": "Country",
+                  "Option": cfIpCountry,
+                }
+              ],
             }
           ],
-          "Date": "2019-03-11",
-          "DueDate": "2018-12-10",
+          "Date": todayDateAsString,
+          "DueDate": dueDateAsString,
           "Reference": "Website Design",
+          "SentToContact": true,
           "Status": "AUTHORISED",
         }
       ]
@@ -114,19 +147,21 @@ export default {
       method: "PUT",
       headers: xeroHeaders,
     };
-    response = await fetch("https://api.xero.com/api.xro/2.0/Invoices", init);
-    jsonResponse = await response.json();
+    const iResponse = await fetch("https://api.xero.com/api.xro/2.0/Invoices", init);
+    const iResponseJson = await iResponse.json();
+    if (env.DEBUG_INVOICE) {
+      console.log(JSON.stringify(init.body, null,  undefined))
+      console.log(JSON.stringify(iResponseJson, null,  undefined))
+    }
 
     // Get online invoice link
     init = {
       method: "GET",
       headers: xeroHeaders,
     };
-    response = await fetch("https://api.xero.com/api.xro/2.0/Invoices/" + jsonResponse.Invoices[0].InvoiceID +  "/OnlineInvoice", init);
-    jsonResponse = await response.json();
-
-
-    return new Response(jsonResponse.OnlineInvoices[0].OnlineInvoiceUrl, {
+    const ioResponse = await fetch("https://api.xero.com/api.xro/2.0/Invoices/" + iResponseJson.Invoices[0].InvoiceID +  "/OnlineInvoice", init);
+    const ioResponseJson = await ioResponse.json();
+    return new Response(ioResponseJson.OnlineInvoices[0].OnlineInvoiceUrl, {
       status: 200,
       headers: {
         "Content-Type": "text/plain",
