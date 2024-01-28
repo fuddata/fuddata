@@ -66,8 +66,60 @@ function arrayBufferToBase64(buffer) {
 
 export default {
   async fetch(request, env) {
-    if (request.method != 'POST') {
-      return new Response('', { status: 405 });
+    // Copy & paste from: https://developers.cloudflare.com/workers/examples/security-headers/
+    const DEFAULT_SECURITY_HEADERS = {
+      /*
+    Secure your application with Content-Security-Policy headers.
+    Enabling these headers will permit content from a trusted domain and all its subdomains.
+    @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+    "Content-Security-Policy": "default-src 'self' example.com *.example.com",
+    */
+      /*
+    You can also set Strict-Transport-Security headers.
+    These are not automatically set because your website might get added to Chrome's HSTS preload list.
+    Here's the code if you want to apply it:
+    "Strict-Transport-Security" : "max-age=63072000; includeSubDomains; preload",
+    */
+      /*
+    Permissions-Policy header provides the ability to allow or deny the use of browser features, such as opting out of FLoC - which you can use below:
+    "Permissions-Policy": "interest-cohort=()",
+    */
+      /*
+    X-XSS-Protection header prevents a page from loading if an XSS attack is detected.
+    @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection
+    */
+      "X-XSS-Protection": "0",
+      /*
+    X-Frame-Options header prevents click-jacking attacks.
+    @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+    */
+      "X-Frame-Options": "DENY",
+      /*
+    X-Content-Type-Options header prevents MIME-sniffing.
+    @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
+    */
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Cross-Origin-Embedder-Policy": 'require-corp; report-to="default";',
+      "Cross-Origin-Opener-Policy": 'same-site; report-to="default";',
+      "Cross-Origin-Resource-Policy": "same-site",
+    };
+
+    const contentType = request.headers.get("content-type");
+    if (request.method != 'POST' || contentType != 'application/json') {
+      return new Response('', {
+        status: 405,
+        headers: DEFAULT_SECURITY_HEADERS,
+      });
+    }
+
+    try {
+      const reqBody = JSON.stringify(await request.json());
+    } catch {
+      return new Response('', {
+        status: 400,
+        headers: DEFAULT_SECURITY_HEADERS,
+      });
     }
 
     const key = "foo";
@@ -80,16 +132,25 @@ export default {
 
     // Read
     try {
-        const { value, metadata } = await env.KV_HELLO.getWithMetadata(key);
+      const { value, metadata } = await env.KV_HELLO.getWithMetadata(key);
 
-        if (value === null) {
-            return new Response("Value not found", {status: 404});
-        }
-        return new Response(metadata.someMetadataKey);
+      if (value === null) {
+        return new Response("Value not found", {
+          status: 404,
+          headers: DEFAULT_SECURITY_HEADERS,
+        });
+      }
+      return new Response(metadata.someMetadataKey, {
+        status: 200,
+        headers: DEFAULT_SECURITY_HEADERS,
+      });
     }
     catch (e)
     {
-        return new Response(e.message, {status: 500});
+      return new Response(e.message, {
+        status: 500,
+        headers: DEFAULT_SECURITY_HEADERS,
+      });
     }
 
     const dataToSign = await request.text();
