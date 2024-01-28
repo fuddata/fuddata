@@ -122,8 +122,14 @@ export default {
     var accountName = paramEmail;
     var acccountNumber = "WebStore|Private|" + paramEmail;
     var countries = require("i18n-iso-countries");
+    var taxType = "Sales - Non EU/no VAT Number";
     countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
     if (paramVATcountry && paramVATcode) {
+      if (paramVATcountry == "MT") {
+        taxType = "Sales - Local";
+      } else {
+        taxType = "Sales - EU";
+      }
       vatNumber = paramVATcountry + paramVATcode;
       accountName = vResponseJson.name;
       acccountNumber = "WebStore|Business|" + vatNumber;
@@ -154,9 +160,10 @@ export default {
           "IsSupplier": false,
           "IsCustomer": true,
           "ContactStatus": "ACTIVE",
-          "TaxNumber": vatNumber,
           "DefaultCurrency": "EUR",
           "Addresses":cAddresses,
+          "TaxNumber": vatNumber,
+          "AccountsReceivableTaxType": taxType,
         }
       ]
     };
