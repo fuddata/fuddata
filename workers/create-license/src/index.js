@@ -33,7 +33,7 @@ export default {
             firstStart: todayDateAsString,
           },
         });
-        return cResponse('{"status":' + value + ',"firstStart":"' + todayDateAsString + '"}', 200);
+        return cResponse('{"status":' + reqBody.request + ',"firstStart":"' + todayDateAsString + '"}', 200);
       case 50:
         try {
           const { value, metadata } = await env.KV_HELLO.getWithMetadata(reqBody.guid);
