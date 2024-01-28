@@ -20,38 +20,42 @@ export default {
     const parsedHeaders = JSON.parse(requestHeaders);
     const cfIpCountry = parsedHeaders["cf-ipcountry"];
 
-    console.log("Request type: " + reqBody.request);
-    switch(reqBody.request) {
-      case 11:
-      case 21:
-      case 31:
+    try {
+      var { value, metadata } = await env.KV_HELLO.getWithMetadata(reqBody.guid);
+      if (value === null) {
+        switch(reqBody.type) {
+          case 1:
+            value = 11;
+            break;
+          case 2:
+            value = 21;
+            break;
+          case 3:
+            value = 31;
+            break;
+          default:
+            return cResponse('{"status":0,"message":"Unsupported type defined"}', 200);
+        }
         const today = new Date();
         const todayDateAsString = today.toISOString().split('T')[0];
-        await env.KV_HELLO.put(reqBody.guid, reqBody.request, {
+        await env.KV_HELLO.put(reqBody.guid, value, {
           metadata: {
-            countryCode: cfIpCountry || "unknown",
+            countryCode: cfIpCountry || "",
             firstStart: todayDateAsString,
           },
         });
-        return cResponse('{"status":' + reqBody.request + ',"firstStart":"' + todayDateAsString + '"}', 200);
-      case 50:
-        try {
-          const { value, metadata } = await env.KV_HELLO.getWithMetadata(reqBody.guid);
-          if (value === null) {
-            return cResponse('Value not found', 404);
-          }
-          if (value == 13 || value == 23 || value == 33) {
-            const license = await writeLicense(reqBody.guid, env.PRIVATE_KEY);
-            return cResponse('{"status":' + value + ',"license":"'+ license + '"}', 200);
-          }
-          return cResponse('{"status":' + value + ',"firstStart":"' + metadata.firstStart + '"}', 200);
-        }
-        catch (e)
-        {
-          return cResponse(e.message, 500);
-        }
-      default:
-        return cResponse('Request type not supported', 400);
+        return cResponse('{"status":11,"message":"' + todayDateAsString + '"}', 200);    
+      }
+      // FixMe: Add 12, 22 and 32 handling to here
+      if (value == 13 || value == 23 || value == 33) {
+        const license = await writeLicense(reqBody.guid, env.PRIVATE_KEY);
+        return cResponse('{"status":' + value + ',"message":"'+ license + '"}', 200);
+      }
+      return cResponse('{"status":' + value + ',"message":"' + metadata.firstStart + '"}', 200);
+    }
+    catch (e)
+    {
+      return cResponse('{"status":0,"message":"' + e.message + '"}', 200);
     }
   },
 };
