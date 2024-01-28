@@ -70,6 +70,28 @@ export default {
       return new Response('', { status: 405 });
     }
 
+    const key = "foo";
+    const value = "test";
+
+    // Write
+    await env.KV_NAMESPACE.put(key, value, {
+      metadata: { someMetadataKey: "someMetadataValue" },
+    });
+
+    // Read
+    try {
+        const value = await env.KV_NAMESPACE.get(key);
+
+        if (value === null) {
+            return new Response("Value not found", {status: 404});
+        }
+        return new Response(value);
+    }
+    catch (e)
+    {
+        return new Response(e.message, {status: 500});
+    }
+
     const dataToSign = await request.text();
     const signature = await signData(dataToSign, env.PRIVATE_KEY);
     return new Response(signature, { status: 200 });
