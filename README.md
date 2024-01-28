@@ -14,18 +14,22 @@ Key value is always machine/AD domain/Azure AD GUID.
 
 ## Values
 Possible values are described below:
-| Value  | Description          |
-| ------ | ---------------------|
-| 11     | Unlicensed computer  |
-| 12     | Licensed computer    |
-| 21     | Unlicensed AD domain |
-| 22     | Licensed AD domain   |
-| 21     | Unlicensed AAD       |
-| 22     | Licensed AAD         |
+| Value | Description                |
+| ----- | -------------------------- |
+| 11    | Computer: Unlicensed       |
+| 12    | Computer: License ordered  |
+| 13    | Computer: License paid     |
+| 21    | AD domain: Unlicensed      |
+| 22    | AD domain: License ordered |
+| 23    | AD domain: License paid    |
+| 31    | Azure AD: Unlicensed       |
+| 32    | Azure ADn: License ordered |
+| 33    | Azure AD: License paid     |
 
 ## Metadata
 Following metadata values are used:
-| Key value    | Metadata name | Metadata value            |
-| ------------ | ------------- | ------------------------- |
-| all          | countryCode   | CF-IPCountry value        |
-| 11 / 21 / 31 | firstStart    | Date in format yyyy-MM-dd |
+| Key value            | Metadata name | Metadata value            |
+| -------------------- | ------------- | ------------------------- |
+| all                  | countryCode   | CF-IPCountry value        |
+| unlicensed           | firstStart    | Date in format yyyy-MM-dd |
+| license ordered/paid | invoiceId     | Xero invoice ID           |
