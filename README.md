@@ -7,3 +7,25 @@
   * Cross-border VAT e-commerce in EU rules: https://taxation-customs.ec.europa.eu/vat-e-commerce_en and https://vat-one-stop-shop.ec.europa.eu/one-stop-shop_en
 * [Revolut](https://developer.revolut.com)
 * [Xero](https://developer.xero.com)
+
+# KV
+Each application has its own namespace (`KV_<app name>`)
+Key value is always machine/AD domain/Azure AD GUID.
+
+## Values
+Possible values are described below:
+| Value  | Description          |
+| ------ | ---------------------|
+| 11     | Unlicensed computer  |
+| 12     | Licensed computer    |
+| 21     | Unlicensed AD domain |
+| 22     | Licensed AD domain   |
+| 21     | Unlicensed AAD       |
+| 22     | Licensed AAD         |
+
+## Metadata
+Following metadata values are used:
+| Key value    | Metadata name | Metadata value            |
+| ------------ | ------------- | ------------------------- |
+| all          | countryCode   | CF-IPCountry value        |
+| 11 / 21 / 31 | firstStart    | Date in format yyyy-MM-dd |

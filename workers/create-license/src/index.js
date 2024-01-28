@@ -71,21 +71,21 @@ export default {
     }
 
     const key = "foo";
-    const value = "test";
+    const value = "test2";
 
     // Write
-    await env.KV_NAMESPACE.put(key, value, {
+    await env.KV_HELLO.put(key, value, {
       metadata: { someMetadataKey: "someMetadataValue" },
     });
 
     // Read
     try {
-        const value = await env.KV_NAMESPACE.get(key);
+        const { value, metadata } = await env.KV_HELLO.getWithMetadata(key);
 
         if (value === null) {
             return new Response("Value not found", {status: 404});
         }
-        return new Response(value);
+        return new Response(metadata.someMetadataKey);
     }
     catch (e)
     {
