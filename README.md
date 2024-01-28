@@ -23,7 +23,7 @@ Possible values are described below:
 | 22    | AD domain: License ordered |
 | 23    | AD domain: License paid    |
 | 31    | Azure AD: Unlicensed       |
-| 32    | Azure ADn: License ordered |
+| 32    | Azure AD: License ordered  |
 | 33    | Azure AD: License paid     |
 
 ## Metadata

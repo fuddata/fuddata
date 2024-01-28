@@ -36,6 +36,8 @@ export function cResponse(message, status) {
     "Cross-Origin-Embedder-Policy": 'require-corp; report-to="default";',
     "Cross-Origin-Opener-Policy": 'same-site; report-to="default";',
     "Cross-Origin-Resource-Policy": "same-site",
+
+    "Content-Type": "application/json",
   };
 
   return new Response(message, {
