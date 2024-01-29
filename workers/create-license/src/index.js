@@ -21,7 +21,9 @@ export default {
     const cfIpCountry = parsedHeaders["cf-ipcountry"];
 
     try {
-      var { value, metadata } = await env.KV_HELLO.getWithMetadata(reqBody.guid);
+      console.log("Requested app: " + reqBody.app);
+      console.log("Requested app: " + env[reqBody.app]);
+      var { value, metadata } = await env[reqBody.app].getWithMetadata(reqBody.guid);
       if (value === null) {
         switch(reqBody.type) {
           case 1:
@@ -38,7 +40,7 @@ export default {
         }
         const today = new Date();
         const todayDateAsString = today.toISOString().split('T')[0];
-        await env.KV_HELLO.put(reqBody.guid, value, {
+        await env[reqBody.app].put(reqBody.guid, value, {
           metadata: {
             countryCode: cfIpCountry || "",
             firstStart: todayDateAsString,

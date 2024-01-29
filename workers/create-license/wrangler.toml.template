@@ -9,7 +9,11 @@ host = "localhost:8080"
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
 [[kv_namespaces]]
-binding = "KV_NAMESPACE"
+binding = "HELLOWORLD"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+[[kv_namespaces]]
+binding = "DEMO"
 id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
