@@ -21,8 +21,6 @@ export default {
     const cfIpCountry = parsedHeaders["cf-ipcountry"];
 
     try {
-      console.log("Requested app: " + reqBody.app);
-      console.log("Requested app: " + env[reqBody.app]);
       var { value, metadata } = await env[reqBody.app].getWithMetadata(reqBody.guid);
       if (value === null) {
         switch(reqBody.type) {
@@ -48,7 +46,6 @@ export default {
         });
         return cResponse('{"status":11,"message":"' + todayDateAsString + '"}', 200);    
       }
-      // FixMe: Add 12, 22 and 32 handling to here
       if (value == 13 || value == 23 || value == 33) {
         const license = await writeLicense(reqBody.guid, env.PRIVATE_KEY);
         return cResponse('{"status":' + value + ',"message":"'+ license + '"}', 200);
