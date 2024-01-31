@@ -17,6 +17,7 @@ Design principles:
 Fast fonts with privacy:
 * https://blog.cloudflare.com/cloudflare-fonts-enhancing-website-privacy-speed/
 * https://developers.cloudflare.com/speed/optimization/content/fonts/
+Dark mode: https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
 
 # KV
 Each application has its own namespace (`KV_<app name>`)
