@@ -16,6 +16,10 @@ export default class extends AbstractView {
             <p>
                 <a href="/posts" data-link>View recent posts</a>.
             </p>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            A lot of later
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            And even more later
         `;
     }
 }

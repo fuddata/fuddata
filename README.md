@@ -1,12 +1,22 @@
 # About
 
 # Architecture
+Design principles:
+* No cookies
+* No tracking of users
+* No usage leaking for 3rd parties
+
 ## 3rd party APIs
 * [EU VIES (VAT Information Exchange System)](https://ec.europa.eu/taxation_customs/vies/)
   * Supported country codes: https://ec.europa.eu/taxation_customs/vies/rest-api/configurations
   * Cross-border VAT e-commerce in EU rules: https://taxation-customs.ec.europa.eu/vat-e-commerce_en and https://vat-one-stop-shop.ec.europa.eu/one-stop-shop_en
 * [Revolut](https://developer.revolut.com)
 * [Xero](https://developer.xero.com)
+
+# UI
+Fast fonts with privacy:
+* https://blog.cloudflare.com/cloudflare-fonts-enhancing-website-privacy-speed/
+* https://developers.cloudflare.com/speed/optimization/content/fonts/
 
 # KV
 Each application has its own namespace (`KV_<app name>`)

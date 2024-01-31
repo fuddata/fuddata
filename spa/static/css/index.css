@@ -1,24 +1,42 @@
+html {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 16px;
+}
+
 body {
+    z-index: 1;
     /*
     --nav-width: 200px;
     font-family: 'Quicksand', sans-serif;
     */
     margin: 0 0 0 var(--nav-width);
-    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    font-size: 18px;
+
 }
 
+#navbar {
+    z-index: 1000;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 90px;   
+    background-color: #ffffff;
+}
 #logo {
-    position: absolute;
+    position: fixed;
     left: 20px;
     top: 5px;
+    /*
+    background-color: #00aaff;
+    */
 }
-
 .nav {
-    position: absolute;
+    position: fixed;
     top: 30px;
     right: 10px;
     width: 400px;
+    /*
+    background-color: #91ff00;
+    */
 }
 .nav__link {
     color: #000000;
@@ -31,8 +49,9 @@ body {
 }
 
 #header {
+    z-index: 100;
     position: relative;
-    top: 60px;
+    top: 90px;
     height: 300px;
     width: 100%;
     background: #006b99;
