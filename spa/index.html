@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5" >
     <title>Fuddata</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <script type="module" src="/static/js/index.js"></script>
 </head>
 <body>
-    <img id="logo" src="/static/img/logo.svg" width="200px" />
+    <a href="/" class="nav__link" data-link>
+        <img id="logo" src="/static/img/logo.svg" width="150px" />
+    </a>
     <nav class="nav">
-        <a href="/" class="nav__link" data-link>Dashboard</a>
         <a href="/contact" class="nav__link" data-link>Contact</a>
-        <a href="/posts" class="nav__link" data-link>Posts</a>
-        <a href="/settings" class="nav__link" data-link>Settings</a>
+        <a href="https://github.com/fuddata" class="nav__link">Github</a>
+        <a href="/terms" class="nav__link" data-link>Terms</a>
+        <a href="/privacy" class="nav__link" data-link>Privacy</a>
     </nav>
     <div id="header"></div>
     <div id="app"></div>

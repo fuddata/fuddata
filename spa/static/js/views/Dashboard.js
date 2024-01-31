@@ -1,4 +1,5 @@
 import AbstractView from "./AbstractView.js";
+import Header from "../components/Header.js";
 
 export default class extends AbstractView {
     constructor(params) {
