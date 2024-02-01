@@ -2,22 +2,18 @@
 <html lang="en">
 <head>
   <!-- TODO: Make sure that this gets loaded from non-Google site in production -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- FixMe: Remove this from production copy
-  <meta http-equiv="refresh" content="5" >
-   -->
-
   <title>Fuddata</title>
   <link rel="stylesheet" href="/static/css/index.css">
   <script type="module" src="/static/js/index.js"></script>
 </head>
 <body>
   <div id="navbar">
-    <a href="/" class="nav__link" data-link>
-      <img id="navbar__logo" src="/static/img/logo.svg" width="150px" />
+    <a href="/" class="nohover" data-link>
+      <img id="navbar__logo" src="/static/img/logo.svg" alt="Navbar Logo" width="150px" />
     </a>
     <nav class="nav">
       <a href="/contact" class="nav__link" data-link>Contact</a>
@@ -26,18 +22,19 @@
       <a href="https://www.youtube.com/@fuddata" target="_blank" rel="noopener noreferrer" class="nav__link">Youtube</a>
     </nav>
   </div>
-  <!-- <div id="header"></div> -->
   <main id="content"></main>
   <div id="footer">
-    <a href="/" class="nav__link" data-link>
-      <img id="footer__logo" src="/static/img/logo.svg" width="80px" />
-    </a>
+    <div>
+      <a href="/" class="nohover" data-link>
+        <img id="footer__logo" src="/static/img/logo.svg" alt="Footer Logo" width="80px" />
+      </a>
+    </div>
     <div id="footer__text">
       Copyright © 2024 Fuddata Limited.
     </div>
     <div id="footer__link">
-      <a href="/terms" class="nav__link" data-link>Terms</a>
-      <a href="/privacy" class="nav__link" data-link>Privacy</a>
+      <a href="/terms" class="footer__link" data-link>Terms</a>
+      <a href="/privacy" class="footer__link" data-link>Privacy</a>
     </div>
   </div>
 </body>
