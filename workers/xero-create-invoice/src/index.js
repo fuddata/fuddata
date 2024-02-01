@@ -172,8 +172,8 @@ export default {
       method: "POST",
       headers: xeroHeaders,
     };
-    const cReponse = await fetch("https://api.xero.com/api.xro/2.0/Contacts", init);
-    const cReponseJson = await cReponse.json();
+    const cResponse = await fetch("https://api.xero.com/api.xro/2.0/Contacts", init);
+    const cReponseJson = await cResponse.json();
     if (env.DEBUG_CONTACT) {
       console.log(JSON.stringify(init.body, null, undefined))
       console.log(JSON.stringify(cReponseJson, null, undefined))
@@ -193,8 +193,8 @@ export default {
       method: "PUT",
       headers: xeroHeaders,
     };
-    const cgReponse = await fetch("https://api.xero.com/api.xro/2.0/ContactGroups/" + env.CONTACT_GROUP_ID + "/Contacts", init);
-    await cgReponse.json();
+    const cgResponse = await fetch("https://api.xero.com/api.xro/2.0/ContactGroups/" + env.CONTACT_GROUP_ID + "/Contacts", init);
+    await cgResponse.json();
 
     // TODO: Only call this is Country have not been already added
     // Create tracking value
