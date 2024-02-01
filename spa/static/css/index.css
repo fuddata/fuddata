@@ -23,7 +23,7 @@
 }
 html {
   font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   color: var(--text-color);
   background-color: var(--bg-color);
 }
@@ -63,11 +63,13 @@ a.nohover:hover {
 #navbar__logo:hover {
   background: var(--link-hover-bg-color);
 }
-.nav {
+.navbar_links {
   position: fixed;
   top: 30px;
   right: 10px;
-  width: 500px;
+  width: 50%;
+  text-align: right;
+  background-color: aquamarine;
 }
 
 /* footer */
