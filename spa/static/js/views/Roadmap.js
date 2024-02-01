@@ -1,14 +1,14 @@
 import AbstractView from "./AbstractView.js";
 
 export default class extends AbstractView {
-    constructor(params) {
-        super(params);
-        this.setTitle("Roadmap");
-    }
+  constructor(params) {
+    super(params);
+    this.setTitle("Roadmap");
+  }
 
-    async getHtml() {
-        return `
-            <h1>Roadmap</h1>
-        `;
-    }
+  async getHtml() {
+    return `
+      <h1>Roadmap</h1>
+    `;
+  }
 }
