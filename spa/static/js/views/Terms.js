@@ -3,15 +3,15 @@ import AbstractView from "./AbstractView.js";
 export default class extends AbstractView {
     constructor(params) {
         super(params);
-        this.setTitle("Terms");
+        this.setTitle("Terms of Use");
     }
 
     async getHtml() {
         return `
-        <h1>Terms of Service for Fuddata Limited website</h1>
+        <h1>Fuddata Terms of Use</h1>
         
         <h2>1. Introduction</h2>
-        <p>Welcome to Fuddata Limited website! These Terms of Service ("Terms") govern your use of our website located at https://fuddata.com (the "Service") operated by Fuddata Limited.</p>
+        <p>Welcome to Fuddata website! These Terms of Service ("Terms") govern your use of our website located at https://fuddata.com (the "Service") operated by Fuddata Limited.</p>
         <p>By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you do not have permission to access the Service.</p>
         
         <h2>2. Use of Service</h2>

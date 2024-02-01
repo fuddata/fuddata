@@ -32,7 +32,7 @@ a {
   font-weight: 500;
   color: var(--text-color);
   display: inline-block;
-  width: 90px;
+  width: 100px;
   text-align: center;
 }
 a.terms {
@@ -50,8 +50,11 @@ a.nohover:hover {
 /* Mobile support */
 @media screen and (min-width: 768px) {
   .navbar_links {
-    width: 450px;
+    width: 700px;
     top: 25px;
+  }
+  #navbar__logo {
+    width: 150px;
   }
   #footer {
     display: block;
@@ -59,8 +62,11 @@ a.nohover:hover {
 }
 @media screen and (max-width: 767px) {
   .navbar_links {
-    width: 250px;
-    top: 10px;
+    width: 350px;
+    top: 5px;
+  }
+  #navbar__logo {
+    width: 100px;
   }
   #footer {
     display: none;
@@ -80,8 +86,7 @@ a.nohover:hover {
 #navbar__logo {
   position: fixed;
   left: 20px;
-  top: 5px;
-  width: 150px;
+  top: 2mv;
 }
 #navbar__logo:hover {
   background: var(--link-hover-bg-color);
