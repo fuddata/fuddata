@@ -10,7 +10,7 @@ export default class extends AbstractView {
     return `
       <h1>Contact</h1>
       <div class="contact-form">
-      <form>
+      <form action="http://192.168.8.40:8791/">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         <label for="email">Email:</label>

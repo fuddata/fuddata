@@ -164,6 +164,8 @@ a.nohover:hover {
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 .contact-form button {
   padding: 10px;
