@@ -35,6 +35,11 @@ a {
   width: 90px;
   text-align: center;
 }
+a.terms {
+  padding: 0px 0px;
+  text-decoration: underline;
+  width: auto;
+}
 a:hover {
   background: var(--link-hover-bg-color);
 }
