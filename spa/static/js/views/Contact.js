@@ -9,7 +9,6 @@ export default class extends AbstractView {
   async getHtml() {
     return `
       <h1>Contact</h1>
-
       <div class="contact-form">
       <form>
         <label for="name">Name:</label>
