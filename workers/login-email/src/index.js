@@ -1,3 +1,33 @@
+import { customAlphabet } from 'nanoid'
+
+async function newSession(env) {
+  const nanoid = customAlphabet('012345678789abcdefghijklmnopqrstuvwxyz', 10);
+  let sessionId;
+  let isUnique = false;
+
+  while (!isUnique) {
+    sessionId = nanoid();
+    try {
+      const existingSession = await env.KV_SESSIONS.get(sessionId);
+      if (!existingSession) {
+        isUnique = true;
+      }
+    }
+    catch (e)
+    {
+      isUnique = true;
+    }
+  }
+  return sessionId;
+}
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message); 
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');  
+  return hashHex;
+}
+
 function getDevice(userAgent) {
   if (userAgent.includes("Windows Phone")) {
     return 'Windows Phone';
@@ -77,12 +107,14 @@ export default {
     return new Response('', {status: 200});
     */
 
-    // FixMe: Add logic to set correct value to this
-    const link = "https://api.fuddata.com/login/a235rfsd";
-
-    if (userAgent.includes("bot")) {
-      return new Response("Block User Agent containing bot", { status: 403 });
-    }
+    const sessionId = await newSession(env);
+    const link = env.EMAIL_BASE_URL + "/?e=" + paramEmail + "&s=" + sessionId;
+    const emailHash = await sha256(paramEmail);
+    await env.KV_SESSIONS.put(sessionId, emailHash, {
+      metadata: {
+        expirationTtl: 86400
+      },
+    });
 
     var body = {
       "template_id": env.EMAIL_TEMPLATE_ID,
@@ -118,10 +150,7 @@ export default {
         "Authorization":"Bearer " + env.API_KEY,
       },
     };
-    const response = await fetch("https://api.sendgrid.com/v3/mail/send", init);
-    const results = await response.text();
-    console.log("SendGrid response: " + results);
-
+    await fetch("https://api.sendgrid.com/v3/mail/send", init);
     const destinationURL = env.REDIRECT_URL;
     const statusCode = 301;
     return Response.redirect(destinationURL, statusCode);

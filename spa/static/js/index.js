@@ -1,6 +1,7 @@
 import BugBounty from "./views/BugBounty.js";
 import Contact from "./views/Contact.js";
 import Dashboard from "./views/Dashboard.js";
+import Login from "./views/Login.js";
 import Privacy from "./views/Privacy.js";
 import Roadmap from "./views/Roadmap.js";
 import Terms from "./views/Terms.js";
@@ -26,6 +27,7 @@ const router = async () => {
     { path: "/", view: Dashboard },
     { path: "/bug-bounty", view: BugBounty },
     { path: "/contact", view: Contact },
+    { path: "/login", view: Login },
     { path: "/privacy", view: Privacy },
     { path: "/roadmap", view: Roadmap },
     { path: "/terms", view: Terms }
