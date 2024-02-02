@@ -1,6 +1,6 @@
 /* Define custom font as very first thing */
 @font-face {
-  font-family: 'Montserrat';
+  font-family: Montserrat;
   src: url(/static/font/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
 }
 
@@ -18,7 +18,7 @@
   }
 }
 html {
-  font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 1em;
   color: var(--text-color);
   background-color: var(--bg-color);
