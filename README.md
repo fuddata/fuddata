@@ -6,6 +6,13 @@ Design principles:
 * No tracking of users
 * No usage leaking for 3rd parties
 
+## Email
+* DNSSEC
+* Rich text only
+* DMARC, DKIM, and SPF
+* TLS only
+* Digital Signing
+
 ## 3rd party APIs
 * [EU VIES (VAT Information Exchange System)](https://ec.europa.eu/taxation_customs/vies/)
   * Supported country codes: https://ec.europa.eu/taxation_customs/vies/rest-api/configurations

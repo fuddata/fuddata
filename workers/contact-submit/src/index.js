@@ -10,13 +10,14 @@ export default {
         {
           "to": [
             {
-              "email": env.EMAIL,
+              "email": env.EMAIL_ADDRESS,
             }
           ]
         }
       ],
       "from": {
-        "email": env.EMAIL,
+        "email": env.EMAIL_ADDRESS,
+        "name": env.EMAIL_NAME,
       },
       "subject": "Contact form post - " + paramName + " (" + paramEmail + ")",
       "content": [
