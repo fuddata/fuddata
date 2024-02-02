@@ -1,3 +1,25 @@
+function getDevice(userAgent) {
+  if (userAgent.includes("Windows Phone")) {
+    return 'Windows Phone';
+  } else if (userAgent.includes("Windows")) {
+    return 'Windows';
+  } else if (userAgent.includes("Android")) {
+    return 'Android';
+  } else if (userAgent.includes("iPhone")) {
+    return 'iPhone';
+  } else if (userAgent.includes("iPad")) {
+    return 'iPad';
+  } else if (userAgent.includes("CrOS")) {
+    return 'Chromebook';
+  } else if (userAgent.includes("Macintosh")) {
+    return 'Mac';
+  } else if (userAgent.includes("Linux")) {
+    return 'Linux';
+  } else {
+    return 'Unknown';
+  }
+}
+
 function getBrowser(userAgent) {
   if (userAgent.includes("Opera") || userAgent.includes('OPR')) {
     return 'Opera';
@@ -10,7 +32,7 @@ function getBrowser(userAgent) {
   } else if (userAgent.includes("Firefox")) {
     return 'Firefox';
   } else {
-    return 'unknown';
+    return 'Unknown';
   }
 }
 
@@ -21,27 +43,34 @@ export default {
     const cfIpCountry = request.headers.get("CF-IPCountry") || "unknown";
     const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "unknown";
     const userAgent = request.headers.get("User-Agent") || "unknown";
-    var uBrowser = userAgent;
-    if (userAgent != "unknown") {
-      uBrowser = getBrowser(userAgent);
+    if (paramEmail === undefined) {
+      return new Response('', {status: 400});
     }
+    var device = userAgent;
+    if (userAgent != "unknown") {
+      device = getDevice(userAgent);
+    }
+    var browser = userAgent;
+    if (userAgent != "unknown") {
+      browser = getBrowser(userAgent);
+    }
+
     console.log("Country: " + cfIpCountry);
     console.log("User agent: " + userAgent);
     console.log("CF-Connecting-IP: " + cfConnectingIP);
-    console.log("Browser: " + uBrowser);
+    console.log("Device: " + device);
+    console.log("Browser: " + browser);
 
-    return new Response('""', {status: 200});
+    // FixMe: Add logic to set correct value to this
+    const link = "https://api.fuddata.com/login/a235rfsd";
+
+    // return new Response('""', {status: 200});
 
     if (userAgent.includes("bot")) {
       return new Response("Block User Agent containing bot", { status: 403 });
     }
 
-    var cCountry = "unknown";
-    if (cfIpCountry) {
-      cCountry = countries.getName(paramVATcountry, "en", {select: "official"});
-    }
     const now = new Date();
-
     var body = {
       "personalizations": [
         {
@@ -58,9 +87,10 @@ export default {
       },
       "dynamic_template_data": {
         "when": now.toString(),
-        "where": cCountry,
-        "browser": getBrowser(),
-        "ip": ip,
+        "where": cfIpCountry,
+        "device": device,
+        "browser": browser,
+        "ip": cfConnectingIP,
         "link": link,
         "company": env.COMPANY,
       }
