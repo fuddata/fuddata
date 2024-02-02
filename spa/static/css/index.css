@@ -27,24 +27,21 @@ body {
   margin: 0px;
 }
 a {
+  color: var(--text-color);
+}
+a.navbar {
   padding: 5px 5px;
   text-decoration: none;
-  font-weight: 500;
-  color: var(--text-color);
   display: inline-block;
   width: 100px;
   text-align: center;
-}
-a.terms {
-  padding: 0px 0px;
-  text-decoration: underline;
-  width: auto;
+  font-weight: 500;
 }
 a:hover {
-  background: var(--link-hover-bg-color);
+  background-color: var(--link-hover-bg-color);
 }
 a.nohover:hover {
-  background: var(--bg-color);
+  background-color: var(--bg-color);
 }
 
 /* Mobile support */
@@ -89,12 +86,17 @@ a.nohover:hover {
   top: 2mv;
 }
 #navbar__logo:hover {
-  background: var(--link-hover-bg-color);
+  background-color: var(--link-hover-bg-color);
 }
 .navbar_links {
   position: fixed;
   right: 10px;
   text-align: right;
+}
+#navbar__warn {
+  position: fixed;
+  left: 250px;
+  color: red;
 }
 
 /* footer */
@@ -116,7 +118,7 @@ a.nohover:hover {
   padding: 0px 15px;
 }
 #footer__logo:hover {
-  background: var(--link-hover-bg-color);
+  background-color: var(--link-hover-bg-color);
 }
 #footer__text {
   position: fixed;
@@ -182,4 +184,14 @@ a.nohover:hover {
 #message {
   height: 100px;
   width: 530px;
+}
+
+/* Dashboard */
+#hello_demo {
+  content:url(/static/img/hello-light.png);
+}
+@media (prefers-color-scheme: dark) {
+  #hello_demo {
+    content:url(/static/img/hello-dark.png);
+  }
 }

@@ -6,12 +6,6 @@ export default class extends AbstractView {
     this.setTitle("Privacy Statement");
   }
 
-  /* FixMe: ChatGPT failed to write this but maybe we don't need it?
-  <h2>8. Children's Privacy</h2>
-  <p>Our Service does not address anyone under the age of 18 ("Children").</p>
-  <p>We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are
-  */
-
   async getHtml() {
     return `
     <h1>Fuddata Privacy Policy</h1>
@@ -85,7 +79,7 @@ export default class extends AbstractView {
     <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
     
     <h2>10. Contact Us</h2>
-    <p>If you have any questions or concerns about our Privacy Policy, or if you wish to exercise any of your privacy rights, please contact us on  <a href="/contact" class="terms" data-link>here</a>.</p>
+    <p>If you have any questions or concerns about our Privacy Policy, or if you wish to exercise any of your privacy rights, please contact us on  <a href="/contact" data-link>here</a>.</p>
     <p>We are committed to addressing your concerns and will endeavor to resolve any privacy issues in a timely manner.</p>    
     `;
   }
