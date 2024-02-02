@@ -5,6 +5,8 @@ Design principles:
 * No cookies
 * No tracking of users
 * No usage leaking for 3rd parties
+* Secure by design.
+  * TLS 1.3 only, warning on TLS 1.2
 
 ## Email
 * DNSSEC
@@ -12,6 +14,9 @@ Design principles:
 * DMARC, DKIM, and SPF
 * TLS only
 * Digital Signing
+
+## User data collection
+* https://developers.cloudflare.com/fundamentals/reference/http-request-headers/
 
 ## 3rd party APIs
 * [EU VIES (VAT Information Exchange System)](https://ec.europa.eu/taxation_customs/vies/)
