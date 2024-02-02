@@ -55,11 +55,27 @@ export default {
       browser = getBrowser(userAgent);
     }
 
+    const now = new Date();
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZoneName: 'short'
+    });
+
+    /*
     console.log("Country: " + cfIpCountry);
     console.log("User agent: " + userAgent);
     console.log("CF-Connecting-IP: " + cfConnectingIP);
     console.log("Device: " + device);
     console.log("Browser: " + browser);
+    console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+    return new Response('', {status: 200});
+    */
 
     // FixMe: Add logic to set correct value to this
     const link = "https://api.fuddata.com/login/a235rfsd";
@@ -68,7 +84,6 @@ export default {
       return new Response("Block User Agent containing bot", { status: 403 });
     }
 
-    const now = new Date();
     var body = {
       "template_id": env.EMAIL_TEMPLATE_ID,
       "personalizations": [
@@ -79,7 +94,7 @@ export default {
             }
           ],
           "dynamic_template_data": {
-            "when": now.toString(),
+            "when": formatter.format(now),
             "where": cfIpCountry,
             "device": device,
             "browser": browser,
@@ -104,7 +119,6 @@ export default {
       },
     };
     const response = await fetch("https://api.sendgrid.com/v3/mail/send", init);
-    // const results = await gatherResponse(response);
     const results = await response.text();
     console.log("SendGrid response: " + results);
 

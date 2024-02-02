@@ -1,0 +1,23 @@
+******************
+Confirm your login
+******************
+Hi,
+
+If this was you logging in, click the link below
+When: {{{when}}}
+Where: {{{where}}}
+Device: {{{device}}}
+Browser: {{{browser}}}
+IP: {{{ip}}}
+
+This was me ( {{{link}}} )
+
+--------------------
+Security information
+--------------------
+This confirmation will only be valid for next 10 minutes, or we'll reject the login request
+
+If this wasn't you, just ignore this email.
+
+Best regards,
+{{{company}}}
