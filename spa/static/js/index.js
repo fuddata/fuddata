@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.matches("[data-link]")) {
       e.preventDefault();
       navigateTo(e.target.href);
+      window.scrollTo(0, 0);
     }
   });
 

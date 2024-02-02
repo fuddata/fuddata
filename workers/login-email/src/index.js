@@ -39,19 +39,19 @@ function getBrowser(userAgent) {
 export default {
   async fetch(request, env) {
     const { searchParams } = new URL(request.url);
-    const paramEmail = searchParams.get('email');
-    const cfIpCountry = request.headers.get("CF-IPCountry") || "unknown";
-    const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "unknown";
-    const userAgent = request.headers.get("User-Agent") || "unknown";
-    if (paramEmail === undefined) {
+    const paramEmail = searchParams.get('email') || "Unknown";
+    const cfIpCountry = request.headers.get("CF-IPCountry") || "Unknown";
+    const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "Unknown";
+    const userAgent = request.headers.get("User-Agent") || "Unknown";
+    if (paramEmail == "Unknown") {
       return new Response('', {status: 400});
     }
     var device = userAgent;
-    if (userAgent != "unknown") {
+    if (userAgent != "Unknown") {
       device = getDevice(userAgent);
     }
     var browser = userAgent;
-    if (userAgent != "unknown") {
+    if (userAgent != "Unknown") {
       browser = getBrowser(userAgent);
     }
 
@@ -64,35 +64,34 @@ export default {
     // FixMe: Add logic to set correct value to this
     const link = "https://api.fuddata.com/login/a235rfsd";
 
-    // return new Response('""', {status: 200});
-
     if (userAgent.includes("bot")) {
       return new Response("Block User Agent containing bot", { status: 403 });
     }
 
     const now = new Date();
     var body = {
+      "template_id": env.EMAIL_TEMPLATE_ID,
       "personalizations": [
         {
           "to": [
             {
               "email": paramEmail,
             }
-          ]
+          ],
+          "dynamic_template_data": {
+            "when": now.toString(),
+            "where": cfIpCountry,
+            "device": device,
+            "browser": browser,
+            "ip": cfConnectingIP,
+            "link": link,
+            "company": env.COMPANY,
+          }
         }
       ],
       "from": {
         "email": env.EMAIL_FROM_ADDRESS,
         "name": env.EMAIL_FROM_NAME,
-      },
-      "dynamic_template_data": {
-        "when": now.toString(),
-        "where": cfIpCountry,
-        "device": device,
-        "browser": browser,
-        "ip": cfConnectingIP,
-        "link": link,
-        "company": env.COMPANY,
       }
     };
     var init = {
@@ -104,7 +103,10 @@ export default {
         "Authorization":"Bearer " + env.API_KEY,
       },
     };
-    await fetch("https://api.sendgrid.com/v3/mail/send", init);
+    const response = await fetch("https://api.sendgrid.com/v3/mail/send", init);
+    // const results = await gatherResponse(response);
+    const results = await response.text();
+    console.log("SendGrid response: " + results);
 
     const destinationURL = env.REDIRECT_URL;
     const statusCode = 301;
