@@ -222,11 +222,3 @@ img {
     content:url(/static/img/hello-dark.png);
   }
 }
-
-/* Authentication */
-#content__unsecure {
-  visibility: visible;
-}
-#content__secure {
-  visibility: hidden;
-}

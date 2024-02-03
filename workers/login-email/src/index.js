@@ -74,13 +74,13 @@ export default {
     const paramHash = searchParams.get('hash');
     const paramSession = searchParams.get('session');
     if (paramAction != "create" && paramAction != "validate") {
-      return new Response('Action "' + paramAction + '" is not supported', {status: 400});
+      return new Response('Action "' + paramAction + '" is not supported', {status: 400, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
     }
     if (paramAction == "create" && paramEmail == null) {
-      return new Response('Action "create" requires parameter "email"', {status: 400});
+      return new Response('Action "create" requires parameter "email"', {status: 400, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
     }
     if (paramAction == "validate" && (paramHash == null || paramSession == null)) {
-      return new Response('Action "validate" requires parameters "hash" and "session"', {status: 400});
+      return new Response('Action "validate" requires parameters "hash" and "session"', {status: 400, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
     }
 
 
@@ -93,11 +93,11 @@ export default {
       console.log("Validating session ID: " + paramSession);
       var { value, metadata } = await env.KV_SESSIONS.getWithMetadata(paramSession);
       if (value == null) {
-        return new Response('Session ID "' + paramSession + '" is invalid', {status: 400});
+        return new Response('Session ID "' + paramSession + '" is invalid', {status: 400, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
       }
       if (paramHash == value) {
         if (ipHash != metadata.ipHash) {
-          return new Response('Session is not valid for IP address: "' + cfConnectingIP + '"', {status: 400});
+          return new Response('Session is not valid for IP address: "' + cfConnectingIP + '"', {status: 400, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
         }
         if (metadata.loggedIn == false) {
           await env.KV_SESSIONS.put(paramSession, paramHash, {
@@ -108,9 +108,9 @@ export default {
             },
           });
         }
-        return new Response(true, {status: 200});
+        return new Response(true, {status: 200, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
       }
-      return new Response('Hash "' + paramHash + '" is invalid', {status: 400});
+      return new Response('Hash "' + paramHash + '" is invalid', {status: 400, headers: {"Content-Type": "text/plain","Access-Control-Allow-Origin": env.ALLOW_ORIGIN}});
     }
 
 
@@ -134,7 +134,7 @@ export default {
 
 
     // Handle email sending for user
-    const link = env.EMAIL_BASE_URL + "/?action=validate&hash=" + emailHash + "&session=" + sessionId;
+    const link = env.EMAIL_BASE_URL + "?h=" + emailHash + "&s=" + sessionId;
     const cfIpCountry = request.headers.get("CF-IPCountry") || "Unknown";
     const userAgent = request.headers.get("User-Agent") || "Unknown";
     var device = userAgent;
