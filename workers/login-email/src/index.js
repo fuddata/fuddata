@@ -1,7 +1,7 @@
 import { customAlphabet } from 'nanoid'
 
-async function newSession(env) {
-  const nanoid = customAlphabet('012345678789abcdefghijklmnopqrstuvwxyz', 10);
+async function newSessionId(env) {
+  const nanoid = customAlphabet('012345678789abcdefghijklmnopqrstuvwxyz', 20);
   let sessionId;
   let isUnique = false;
 
@@ -69,13 +69,74 @@ function getBrowser(userAgent) {
 export default {
   async fetch(request, env) {
     const { searchParams } = new URL(request.url);
-    const paramEmail = searchParams.get('email') || "Unknown";
-    const cfIpCountry = request.headers.get("CF-IPCountry") || "Unknown";
-    const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "Unknown";
-    const userAgent = request.headers.get("User-Agent") || "Unknown";
-    if (paramEmail == "Unknown") {
-      return new Response('', {status: 400});
+    const paramAction = searchParams.get('action');
+    const paramEmail = searchParams.get('email');
+    const paramHash = searchParams.get('hash');
+    const paramSession = searchParams.get('session');
+    if (paramAction != "create" && paramAction != "validate") {
+      return new Response('Action "' + paramAction + '" is not supported', {status: 400});
     }
+    if (paramAction == "create" && paramEmail == null) {
+      return new Response('Action "create" requires parameter "email"', {status: 400});
+    }
+    if (paramAction == "validate" && (paramHash == null || paramSession == null)) {
+      return new Response('Action "validate" requires parameters "hash" and "session"', {status: 400});
+    }
+
+
+    // Handle session validation
+    // Session ID, email address hash and client IP address needs to match.
+    // Extend session validation period to two hours when called first time.
+    const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "Unknown";
+    const ipHash = await sha256(cfConnectingIP);
+    if (paramAction == "validate") {
+      console.log("Validating session ID: " + paramSession);
+      var { value, metadata } = await env.KV_SESSIONS.getWithMetadata(paramSession);
+      if (value == null) {
+        return new Response('Session ID "' + paramSession + '" is invalid', {status: 400});
+      }
+      if (paramHash == value) {
+        if (ipHash != metadata.ipHash) {
+          return new Response('Session is not valid for IP address: "' + cfConnectingIP + '"', {status: 400});
+        }
+        if (metadata.loggedIn == false) {
+          await env.KV_SESSIONS.put(paramSession, paramHash, {
+            metadata: {
+              ipHash: ipHash,
+              expirationTtl: 7200,
+              loggedIn: true,
+            },
+          });
+        }
+        return new Response(true, {status: 200});
+      }
+      return new Response('Hash "' + paramHash + '" is invalid', {status: 400});
+    }
+
+
+    // Handle session creation
+    // Store only SHA256 sum of user email address and IP so those
+    // are not considered as GDPR personal data.
+    // Make session valid 10 min 30 sec because we say for user that link
+    // is valid 10 minutes and there is small delays on email delivery
+    const sessionId = await newSessionId(env);
+    const emailHash = await sha256(paramEmail);
+    console.log("emailHash: " + emailHash);
+    console.log("sessionId: " + sessionId);
+    console.log("ipHash: " + ipHash);
+    await env.KV_SESSIONS.put(sessionId, emailHash, {
+      metadata: {
+        ipHash: ipHash,
+        expirationTtl: 630,
+        loggedIn: false,
+      },
+    });
+
+
+    // Handle email sending for user
+    const link = env.EMAIL_BASE_URL + "/?action=validate&hash=" + emailHash + "&session=" + sessionId;
+    const cfIpCountry = request.headers.get("CF-IPCountry") || "Unknown";
+    const userAgent = request.headers.get("User-Agent") || "Unknown";
     var device = userAgent;
     if (userAgent != "Unknown") {
       device = getDevice(userAgent);
@@ -84,7 +145,6 @@ export default {
     if (userAgent != "Unknown") {
       browser = getBrowser(userAgent);
     }
-
     const now = new Date();
     const formatter = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -96,26 +156,6 @@ export default {
       second: 'numeric',
       timeZoneName: 'short'
     });
-
-    /*
-    console.log("Country: " + cfIpCountry);
-    console.log("User agent: " + userAgent);
-    console.log("CF-Connecting-IP: " + cfConnectingIP);
-    console.log("Device: " + device);
-    console.log("Browser: " + browser);
-    console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
-    return new Response('', {status: 200});
-    */
-
-    const sessionId = await newSession(env);
-    const link = env.EMAIL_BASE_URL + "/?e=" + paramEmail + "&s=" + sessionId;
-    const emailHash = await sha256(paramEmail);
-    await env.KV_SESSIONS.put(sessionId, emailHash, {
-      metadata: {
-        expirationTtl: 86400
-      },
-    });
-
     var body = {
       "template_id": env.EMAIL_TEMPLATE_ID,
       "personalizations": [
