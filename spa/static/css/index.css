@@ -46,6 +46,17 @@ a.nohover:hover {
 img {
   max-width: 100%;
 }
+button {
+  border: none;
+  border-radius: 4px;
+  background-color: #d97904;
+  color: white;
+  font-size: 1em;
+  padding: 7px;
+}
+button:hover {
+  background-color: #df9103;
+}
 
 /* Mobile support */
 @media screen and (min-width: 768px) {
@@ -197,16 +208,7 @@ img {
   color: var(--text-color);
 }
 .contact-form button {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #d97904;
-  color: white;
-  cursor: pointer;
   width: 150px;
-}
-.contact-form button:hover {
-  background-color: #df9103;
 }
 #message {
   height: 100px;
@@ -221,4 +223,20 @@ img {
   #hello_demo {
     content:url(/static/img/hello-dark.png);
   }
+}
+
+/* Login */
+.hidden {
+  display: none;
+}
+#login__form {
+  position: fixed;
+  z-index: 20;
+  top: 65px;
+  right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+  height: 200px;
+  background-color: azure;
 }
