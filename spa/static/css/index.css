@@ -54,7 +54,11 @@ button {
   background-color: #d97904;
   color: white;
   font-size: 1em;
-  padding: 7px;
+  margin-top: 3px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  padding-left: 13px;
+  padding-right: 13px;
 }
 button:hover {
   background-color: #df9103;
@@ -130,7 +134,7 @@ button:hover {
   position: fixed;
   z-index: 10;
   text-align: right; 
-  right: 80px;
+  right: 90px;
 }
 #navbar__buttons {
   position: fixed;
@@ -143,7 +147,7 @@ button:hover {
 #navbar__buttons a {
   font-size: 25px;
   text-decoration: none;
-  right: 80px;
+  right: 90px;
 }
 
 /* footer */
@@ -238,10 +242,21 @@ button:hover {
   position: fixed;
   z-index: 20;
   top: 65px;
-  right: 10px;
+  right: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
   width: 200px;
-  height: 200px;
+  height: 120px;
   background-color: var(--menu-bg-color);
+  text-align: left;
+  padding: 20px;
+  font-weight: bold;
+}
+#login__form input[type="email"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

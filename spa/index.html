@@ -58,7 +58,11 @@ function toggleMenu() {
       <a href="https://www.youtube.com/@fuddata" class="navbar" target="_blank" rel="noopener noreferrer">Youtube</a>
     </nav>
     <div id="navbar__buttons">
-      <div id="login__form" class="hidden"></div>
+      <div id="login__form" class="hidden">
+        <label for="email">Email address:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Request one-time password</button>
+      </div>
       <button onclick="document.getElementById('login__form').classList.toggle('hidden')">Login</button>
       <a href="javascript:void(0);" id="navbar__buttons" onclick="toggleMenu()">&#9776;</a>
     </div>
