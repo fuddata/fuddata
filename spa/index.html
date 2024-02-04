@@ -59,9 +59,11 @@ function toggleMenu() {
     </nav>
     <div id="navbar__buttons">
       <div id="login__form" class="hidden">
-        <label for="email">Email address:</label>
-        <input type="email" id="email" name="email" required>
-        <button type="submit">Request one-time password</button>
+        <form>
+          <label for="email">Email address:</label>
+          <input type="email" id="email" name="email" required>
+          <button type="submit">Request one-time password</button>
+        </form>
       </div>
       <button onclick="document.getElementById('login__form').classList.toggle('hidden')">Login</button>
       <a href="javascript:void(0);" id="navbar__buttons" onclick="toggleMenu()">&#9776;</a>
