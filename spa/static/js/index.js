@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Handle login form submit
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('#login_form_container_email .login_form_email');
-  form.addEventListener('submit', function(event) {
+  const eForm = document.querySelector('#login_form_container_email .login_form_email');
+  eForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const email = document.getElementById('login_form_email').value;
     const apiUrl = `http://192.168.8.40:8792/?action=create&email=${encodeURIComponent(email)}`;
@@ -82,5 +82,36 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error:', error);
         // Handle any errors here, e.g., display an error message to the user
       });
+  });
+
+  const oform = document.querySelector('#login_form_container_otp .login_form');
+  oform.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    /*
+    const email = document.getElementById('login_form_email').value;
+    const apiUrl = `http://192.168.8.40:8792/?action=create&email=${encodeURIComponent(email)}`;
+    fetch(apiUrl)
+      .then(response => response.text()) // Assuming the response is JSON
+      .then(data => {
+        console.log('Success:', data);
+        // Handle success response here, e.g., display a message to the user
+        document.getElementById('login_form_container_email').classList.toggle('hidden');
+        document.getElementById('login_form_container_otp').classList.toggle('hidden');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle any errors here, e.g., display an error message to the user
+    });
+    */
+    document.getElementById('login_form_container_otp').classList.toggle('hidden');
+    document.getElementById('login_btn').classList.toggle('hidden');
+    document.getElementById('logout_btn').classList.toggle('hidden');
+  });
+
+  var logoutBtn = document.getElementById("logout_btn");
+  logoutBtn.addEventListener("click", function(event){
+    document.getElementById('logout_btn').classList.toggle('hidden');
+    document.getElementById('login_btn').classList.toggle('hidden');
   });
 });
