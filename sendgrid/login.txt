@@ -1,0 +1,13 @@
+Hi,
+
+Please use the token below to sign-in to your Fuddata account.
+{{{opt}}}
+
+
+This token is only valid for 5 minutes.
+
+If it has been longer than this, please request a new token from our website.
+If this wasn't you, just ignore this email.
+
+Best regards,
+Fuddata
