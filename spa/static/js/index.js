@@ -61,3 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   router();
 });
+
+
+// Handle login form submit
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('#login_form_container_email .login_form_email');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('login_form_email').value;
+    const apiUrl = `http://192.168.8.40:8792/?action=create&email=${encodeURIComponent(email)}`;
+    fetch(apiUrl)
+      .then(response => response.text()) // Assuming the response is JSON
+      .then(data => {
+        console.log('Success:', data);
+        // Handle success response here, e.g., display a message to the user
+        document.getElementById('login_form_container_email').classList.toggle('hidden');
+        document.getElementById('login_form_container_otp').classList.toggle('hidden');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle any errors here, e.g., display an error message to the user
+      });
+  });
+});

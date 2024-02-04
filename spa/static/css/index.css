@@ -66,48 +66,48 @@ button:hover {
 
 /* Mobile support */
 @media screen and (min-width: 768px) {
-  #navbar__logo {
+  #navbar_logo {
     width: 150px;
   }
-  .navbar__links {
+  .navbar_links {
     width: 700px;
     top: 25px;
   }
-  #navbar__buttons a {
+  #navbar_buttons a {
     display: none;
   }
-  #footer__text {
+  #footer_text {
     width: 100%;
   }
-  #content__border {
+  #content_border {
     width: 70%;
   }
 }
 @media screen and (max-width: 767px) {
-  #navbar__logo {
+  #navbar_logo {
     width: 100px;
   }
-  .navbar__links {
+  .navbar_links {
     width: 100px;
     top: 60px;
     border-radius: 4px;
     background-color: var(--menu-bg-color);
   }
-  .navbar__links a {
+  .navbar_links a {
     display: none;
   }
-  #navbar__buttons a {
+  #navbar_buttons a {
     display: block;
   }
-  .navbar__links.block a {
+  .navbar_links.block a {
     display: block;
   }
-  #footer__text {
+  #footer_text {
     width: 100px;
     left: 150px;
     font-size: 0.7em;
   }
-  #content__border {
+  #content_border {
     width: 100%;
   }
 }
@@ -122,21 +122,21 @@ button:hover {
   height: 80px;
   border-bottom: 0.1em dotted rgba(128, 128, 128, 0.226);
 }
-#navbar__logo {
+#navbar_logo {
   position: fixed;
   left: 20px;
   top: 2mv;
 }
-#navbar__logo:hover {
+#navbar_logo:hover {
   background-color: var(--link-hover-bg-color);
 }
-.navbar__links {
+.navbar_links {
   position: fixed;
   z-index: 10;
   text-align: right; 
   right: 90px;
 }
-#navbar__buttons {
+#navbar_buttons {
   position: fixed;
   z-index: 10;
   top: 10px;
@@ -144,7 +144,7 @@ button:hover {
   text-align: right;
   margin: 10px;
 }
-#navbar__buttons a {
+#navbar_buttons a {
   font-size: 25px;
   text-decoration: none;
   right: 90px;
@@ -161,22 +161,22 @@ button:hover {
   border-top: 0.1em dotted rgba(128, 128, 128, 0.226);
   margin: 0px;
 }
-#footer__logo {
+#footer_logo {
   position: fixed;
   bottom: 5px;
   height: 50px;
   width: 80px;
   padding: 0px 15px;
 }
-#footer__logo:hover {
+#footer_logo:hover {
   background-color: var(--link-hover-bg-color);
 }
-#footer__text {
+#footer_text {
   position: fixed;
   bottom: 20px;
   text-align: center;
 }
-#footer__link {
+#footer_link {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -184,7 +184,7 @@ button:hover {
 }
 
 /* Content */
-#content__border {
+#content_border {
   z-index: 1;
   margin-bottom: 90px;
   margin-top: 100px;
@@ -238,7 +238,7 @@ button:hover {
 .hidden {
   display: none;
 }
-#login__form {
+.login_form {
   position: fixed;
   z-index: 20;
   top: 65px;
@@ -246,13 +246,14 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
   width: 200px;
-  height: 120px;
+  /* height: 120px; */
   background-color: var(--menu-bg-color);
   text-align: left;
   padding: 20px;
   font-weight: bold;
 }
-#login__form input[type="email"] {
+.login_form input[type="email"],
+.login_form input[type="otp"] {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;

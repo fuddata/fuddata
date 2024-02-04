@@ -192,7 +192,26 @@ export default {
     };
     await fetch("https://api.sendgrid.com/v3/mail/send", init);
     const destinationURL = env.REDIRECT_URL;
-    const statusCode = 301;
-    return Response.redirect(destinationURL, statusCode);
+    // const statusCode = 301;
+    // return Response.redirect(destinationURL, statusCode);
+    /*
+    return new Response('',
+      {
+        status: 301,
+        headers: {
+          "Location": destinationURL,
+          "Access-Control-Allow-Origin": env.ALLOW_ORIGIN
+        }
+      }
+    );
+    */
+    return new Response('',
+      {
+        status: 200,
+        headers: {
+          "Access-Control-Allow-Origin": env.ALLOW_ORIGIN
+        }
+      }
+    );
   },
 };

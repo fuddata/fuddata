@@ -9,30 +9,30 @@
   <script type="module" src="/static/js/index.js"></script>
   <script>
 function toggleMenu() {
-  var x = document.getElementsByClassName("navbar__links")[0];
-  if (x.className === "navbar__links") {
+  var x = document.getElementsByClassName("navbar_links")[0];
+  if (x.className === "navbar_links") {
     x.className += " block";
   } else {
-    x.className = "navbar__links";
+    x.className = "navbar_links";
   }
 }
   </script>
   <!-- TODO: Remove this when page is ready -->
   <style>
-    #navbar__warn {
+    #navbar_warn {
       position: absolute;
       color: red;
       font-weight: bold;
     }
     @media screen and (min-width: 768px) {
-      #navbar__warn {
+      #navbar_warn {
         font-size: 30px;
         left: 250px;
         top: 20px;
       }
     }
     @media screen and (max-width: 767px) {
-      #navbar__warn {
+      #navbar_warn {
         font-size: 20px;
         left: 10px;
         top: 60px;
@@ -43,11 +43,11 @@ function toggleMenu() {
 <body>
   <div id="navbar">
     <!-- TODO: Remove this when page is ready -->
-    <div id="navbar__warn">Warning!!! This webpage is on beta testing phase.</div>
+    <div id="navbar_warn">Warning!!! This webpage is on beta testing phase.</div>
     <a href="/" class="nohover" data-link>
-      <img id="navbar__logo" src="/static/img/logo.svg" alt="Navbar Logo" width="150px" />
+      <img id="navbar_logo" src="/static/img/logo.svg" alt="Navbar Logo" width="150px" />
     </a>
-    <nav class="navbar__links">
+    <nav class="navbar_links">
       <a href="/contact" class="navbar" data-link>Contact</a>
       <!--
       <a href="/bug-bounty" class="navbar" data-link>Bug Bounty</a>
@@ -57,29 +57,36 @@ function toggleMenu() {
       <a href="https://www.linkedin.com/company/fuddata" class="navbar" target="_blank" rel="noopener noreferrer"">Linkedin</a>
       <a href="https://www.youtube.com/@fuddata" class="navbar" target="_blank" rel="noopener noreferrer">Youtube</a>
     </nav>
-    <div id="navbar__buttons">
-      <div id="login__form" class="hidden">
-        <form>
-          <label for="email">Email address:</label>
-          <input type="email" id="email" name="email" required>
-          <button type="submit">Request one-time password</button>
+    <div id="navbar_buttons">
+      <div id="login_form_container_email" class="login_form hidden">
+        <form class="login_form_email">
+          <label for="email" id="login_form_email_label" class="">Email address:</label>
+          <input type="email" id="login_form_email" name="email" class="" required>
+          <button type="submit" name="login_form_email_btn" class="">Request one-time password</button>
         </form>
       </div>
-      <button onclick="document.getElementById('login__form').classList.toggle('hidden')">Login</button>
-      <a href="javascript:void(0);" id="navbar__buttons" onclick="toggleMenu()">&#9776;</a>
+      <div id="login_form_container_otp" class="login_form hidden">
+        <form class="login_form">
+          <label for="otp">One time password:</label>
+          <input type="otp" id="login_form_otp" name="otp">
+          <button type="submit" name="login_form_otp_btn">Login</button>
+        </form>
+      </div>
+      <button onclick="document.getElementById('login_form_container_email').classList.toggle('hidden')">Login</button>
+      <a href="javascript:void(0);" id="navbar_buttons" onclick="toggleMenu()">&#9776;</a>
     </div>
   </div>
-  <main id="content__border">
+  <main id="content_border">
     <div id="content"></div>
   </main>
   <div id="footer">
     <div>
-      <img id="footer__logo" src="/static/img/logo.svg" alt="Footer Logo" width="80px" />
+      <img id="footer_logo" src="/static/img/logo.svg" alt="Footer Logo" width="80px" />
     </div>
-    <div id="footer__text">
+    <div id="footer_text">
       Copyright © 2024 Fuddata Limited.
     </div>
-    <div id="footer__link">
+    <div id="footer_link">
       <a href="/terms" data-link>Terms</a>
       <a href="/privacy" data-link>Privacy</a>
     </div>
