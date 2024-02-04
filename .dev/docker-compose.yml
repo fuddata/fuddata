@@ -1,0 +1,37 @@
+services:
+  traefik:
+    image: traefik:v2.10
+    command:
+      - --configFile=/traefik-config.yml
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - ./.cert:/cert
+      - ./traefik-config.yml:/traefik-config.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  frontend:
+    image: nginxinc/nginx-unprivileged:1.25
+    volumes:
+      - ../frontend:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.frontend.entrypoints=websecure
+      - traefik.http.routers.frontend.rule=Host(`fuddata.local`)
+      - traefik.http.routers.frontend.tls=true
+      - traefik.http.services.frontend.loadbalancer.server.port=8080
+
+  login:
+    image: wrangler
+    volumes:
+      - ../workers/login:/worker
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.login.stripprefix.prefixes=/api/login
+      - traefik.http.routers.login.entrypoints=websecure
+      - traefik.http.routers.login.rule=Host(`fuddata.local`) && PathPrefix(`/api/login`)
+      - traefik.http.routers.login.tls=true
+      - traefik.http.services.login.loadbalancer.server.port=8787

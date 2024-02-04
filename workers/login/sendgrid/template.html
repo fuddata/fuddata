@@ -1,0 +1,40 @@
+<html>
+  <head>
+     <style>
+       table {
+         font-family: sans-serif;
+         line-height: 25px;
+         padding: 16px 16px 16px 16px;
+       }
+       #info {
+         background-color: #F3F4F5;
+         text-align: Center;
+         border: 1px solid #ddd;
+         border-radius: 4px;
+         font-size: 36px;
+         letter-spacing: 10px;
+       }
+     </style>
+  </head>
+  <body>
+    <table width="100%" border="0">
+      <tr>
+        <td align="center">
+          <p>Hi,</p>
+          <p>Please use the token below to sign-in to your Fuddata account.</p>
+          <table id="info">
+            <tr>
+              <td>{{{otp}}}</td>
+            </tr>
+          </table>
+          <br />
+          <p>This token is only valid for 5 minutes.</p>
+          <p>If this wasn't you, just ignore this email.</p>
+          <br />
+          <p>Best regards,</p>
+          <p><b>Fuddata</b></p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
