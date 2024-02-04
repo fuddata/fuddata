@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fuddata</title>
-  <link rel="stylesheet" href="/static/css/index.css">
+  <link rel="stylesheet" href="/static/css/index.css" />
+  <link rel="stylesheet" href="/static/css/content.css" />
   <script type="module" src="/static/js/index.js"></script>
+  <script>
+function toggleMenu() {
+  var x = document.getElementsByClassName("navbar__links")[0];
+  if (x.className === "navbar__links") {
+    x.className += " block";
+  } else {
+    x.className = "navbar__links";
+  }
+}
+  </script>
+  <!-- TODO: Remove this when page is ready -->
+  <style>
+    #navbar__warn {
+      position: absolute;
+      color: red;
+      font-weight: bold;
+    }
+    @media screen and (min-width: 768px) {
+      #navbar__warn {
+        font-size: 30px;
+        left: 250px;
+        top: 20px;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      #navbar__warn {
+        font-size: 20px;
+        left: 10px;
+        top: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="navbar">
+    <!-- TODO: Remove this when page is ready -->
     <div id="navbar__warn">Warning!!! This webpage is on beta testing phase.</div>
     <a href="/" class="nohover" data-link>
       <img id="navbar__logo" src="/static/img/logo.svg" alt="Navbar Logo" width="150px" />
     </a>
-    <nav class="navbar_links">
-      <a href="/contact" class="navbar"data-link>Contact</a>
+    <nav class="navbar__links">
+      <a href="/contact" class="navbar" data-link>Contact</a>
       <!--
       <a href="/bug-bounty" class="navbar" data-link>Bug Bounty</a>
       <a href="/roadmap" class="navbar" data-link>Roadmap</a>
@@ -22,9 +56,12 @@
       <a href="https://github.com/fuddata" class="navbar" target="_blank" rel="noopener noreferrer">Github</a>
       <a href="https://www.linkedin.com/company/fuddata" class="navbar" target="_blank" rel="noopener noreferrer"">Linkedin</a>
       <a href="https://www.youtube.com/@fuddata" class="navbar" target="_blank" rel="noopener noreferrer">Youtube</a>
-      <button id="login__btn" onclick="document.getElementById('login__form').classList.toggle('hidden')">Login</button>
-      <div id="login__form" class="hidden"></div>
     </nav>
+    <div id="navbar__buttons">
+      <div id="login__form" class="hidden"></div>
+      <button onclick="document.getElementById('login__form').classList.toggle('hidden')">Login</button>
+      <a href="javascript:void(0);" id="navbar__buttons" onclick="toggleMenu()">&#9776;</a>
+    </div>
   </div>
   <main id="content__border">
     <div id="content"></div>

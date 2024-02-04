@@ -9,12 +9,14 @@
   --text-color:#000000;
   --bg-color: #ffffff;
   --link-hover-bg-color: rgba(0, 0, 0, 0.05);
+  --menu-bg-color: #e2dddd;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #121212;
     --text-color:#ffffff;
     --link-hover-bg-color: rgba(255, 255, 255, 0.05);
+    --menu-bg-color: #3b3b3b;
   }
 }
 html {
@@ -60,12 +62,16 @@ button:hover {
 
 /* Mobile support */
 @media screen and (min-width: 768px) {
-  .navbar_links {
-    width: 700px;
-    top: 25px;
-  }
   #navbar__logo {
     width: 150px;
+  }
+  .navbar__links {
+    width: 700px;
+    top: 25px;
+    right: 50px;
+  }
+  #navbar__buttons a {
+    display: none;
   }
   #footer {
     display: block;
@@ -73,30 +79,33 @@ button:hover {
   #content__border {
     width: 70%;
   }
-  #navbar__warn {
-    font-size: 30px;
-    left: 250px;
-    top: 20px;
-  }
 }
 @media screen and (max-width: 767px) {
-  .navbar_links {
-    width: 350px;
-    top: 5px;
-  }
   #navbar__logo {
     width: 100px;
+  }
+  .navbar__links {
+    width: 100px;
+    top: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: var(--menu-bg-color);
+    right: 5px;
+  }
+  .navbar__links a {
+    display: none;
+  }
+  #navbar__buttons a {
+    display: block;
+  }
+  .navbar__links.block a {
+    display: block;
   }
   #footer {
     display: none;
   }
   #content__border {
     width: 100%;
-  }
-  #navbar__warn {
-    font-size: 20px;
-    left: 10px;
-    top: 60px;
   }
 }
 
@@ -118,16 +127,22 @@ button:hover {
 #navbar__logo:hover {
   background-color: var(--link-hover-bg-color);
 }
-.navbar_links {
+.navbar__links {
   position: fixed;
   z-index: 10;
+  text-align: right; 
+}
+#navbar__buttons {
+  position: fixed;
+  z-index: 10;
+  top: 10px;
   right: 10px;
   text-align: right;
+  margin: 10px;
 }
-#navbar__warn {
-  position: absolute;
-  color: red;
-  font-weight: bold;
+#navbar__buttons a {
+  font-size: 25px;
+  text-decoration: none;
 }
 
 /* footer */
@@ -215,16 +230,6 @@ button:hover {
   width: 530px;
 }
 
-/* Dashboard */
-#hello_demo {
-  content:url(/static/img/hello-light.png);
-}
-@media (prefers-color-scheme: dark) {
-  #hello_demo {
-    content:url(/static/img/hello-dark.png);
-  }
-}
-
 /* Login */
 .hidden {
   display: none;
@@ -238,5 +243,5 @@ button:hover {
   border-radius: 4px;
   width: 200px;
   height: 200px;
-  background-color: azure;
+  background-color: var(--menu-bg-color);
 }
