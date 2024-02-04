@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuddata</title>
+  <link rel="stylesheet" href="/static/css/index.css" />
+  <!-- TODO: Remove this when page is ready -->
+  <link rel="stylesheet" href="/static/css/warn.css" />
+  <script type="module" src="/static/js/index.js"></script>
+</head>
+<body>
+  <div id="navbar">
+    <!-- TODO: Remove this when page is ready -->
+    <div id="navbar_warn">Warning!!! This webpage is on beta testing phase.</div>
+    <a href="/" class="nohover" data-link>
+      <img id="navbar_logo" src="/static/img/logo.svg" alt="Navbar Logo" width="150px" />
+    </a>
+    <nav class="navbar_links">
+      <a href="https://github.com/fuddata/fuddata" class="navbar" target="_blank" rel="noopener noreferrer">Github</a>
+      <a href="https://www.linkedin.com/company/fuddata" class="navbar" target="_blank" rel="noopener noreferrer"">Linkedin</a>
+    </nav>
+    <div id="navbar_buttons">
+      <div id="login_form_container_email" class="login_form hidden">
+        <form class="login_form_email" autocomplete="off">
+          <label for="email" id="login_form_email_label">Email address:</label>
+          <input type="email" id="login_form_email" name="email" required>
+          <button type="submit">Request authentication token</button>
+        </form>
+      </div>
+      <div id="login_form_container_otp" class="login_form hidden">
+        <form class="login_form" autocomplete="off">
+          Please enter the authentication token that was sent to your email address.<br /><br />
+          <label for="otp">Authentication token:</label>
+          <input type="otp" id="login_form_otp" name="otp">
+          <label id="otperror"></label><br />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <button id="login_btn">Login</button>
+      <button id="logout_btn" class="hidden">Logout</button>
+      <a id="navbar_buttons">&#9776;</a>
+    </div>
+  </div>
+  <main id="content_border">
+    <div id="content"></div>
+  </main>
+  <div id="footer">
+    <div>
+      <img id="footer_logo" src="/static/img/logo.svg" alt="Footer Logo" width="80px" />
+    </div>
+    <div id="footer_text">
+      Copyright © 2024 Fuddata Limited.
+    </div>
+    <div id="footer_link">
+      <a href="/terms" data-link>Terms</a>
+      <a href="/privacy" data-link>Privacy</a>
+    </div>
+  </div>
+</body>
+</html>
