@@ -73,8 +73,8 @@ button:hover {
   #navbar__buttons a {
     display: none;
   }
-  #footer {
-    display: block;
+  #footer__text {
+    width: 100%;
   }
   #content__border {
     width: 70%;
@@ -101,8 +101,10 @@ button:hover {
   .navbar__links.block a {
     display: block;
   }
-  #footer {
-    display: none;
+  #footer__text {
+    width: 100px;
+    left: 150px;
+    font-size: 0.7em;
   }
   #content__border {
     width: 100%;
@@ -169,7 +171,6 @@ button:hover {
 #footer__text {
   position: fixed;
   bottom: 20px;
-  width: 100%;
   text-align: center;
 }
 #footer__link {
