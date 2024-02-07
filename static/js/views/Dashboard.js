@@ -19,14 +19,15 @@ export default class extends AbstractView {
       <li><i>Very strict</i> security headers configuration</li>
       <li>Safe login emails with:</li>
       <ol>
-        <li><i>Rich text formatting</i> meadning that they contain both HTML and plain text version of message and both are human readable</li>
+        <li><i>Rich text formatting</i> meaning that they contain both HTML and plain text version of message and both are human readable</li>
         <li><i>No links</i></li>
         <li><i>No pictures</i></li>
       </ol>
+      <li>Secure contact form</li>
       <h3>Privacy</h3>
       <li><i>No cookies</i> (none, zero)</li>
       <li><i>No user tracking</i></li>
-      <li><i>Irreversible</i> hashing method used to store email addresses.</li>
+      <li><i>Irreversible</i> hashing method used to store email addresses (except on contact form at the moment so we can reply).</li>
       <h3>Functionality</h3>
       <li>Simple, human readable code</li>
       </p>

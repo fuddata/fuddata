@@ -203,7 +203,7 @@ button:hover {
 
 /* Contact */
 .contact-form {
-  width: 550px;
+  width: 700px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -212,7 +212,7 @@ button:hover {
   display: flex;
   flex-direction: column;
 }
-.contact-form label {
+.contact-form label[id="contact_message"] {
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -221,6 +221,7 @@ button:hover {
 .contact-form textarea {
   padding: 10px;
   margin-bottom: 10px;
+  height: 200px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: var(--bg-color);

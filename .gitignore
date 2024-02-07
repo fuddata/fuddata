@@ -1,3 +1,4 @@
 .dev.vars
+.local
 .wrangler/
 node_modules/

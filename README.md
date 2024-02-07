@@ -9,8 +9,11 @@ You can find more detailed readme files about each component from subfolders.
 
 # Development
 ```shell
-wrangler pages dev --compatibility-date=2024-01-29 --port 8888 . --kv=SESSIONS
+wrangler pages dev --compatibility-date=2024-01-29 --port 8888 . --kv=SESSIONS --kv=CONTACT
 ```
+
+## Issues to follow:
+https://github.com/cloudflare/workers-sdk/issues/3259
 
 # Components
 ## Frontend
@@ -36,3 +39,6 @@ Note! Because this is minimal implementation, logout will only remove session ID
 Server side will be automatically cleaned up after session expires.
 
 You can find email template on HTML and plain text formats in "sendgrid" folder.
+
+# Security
+https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#security-headers
