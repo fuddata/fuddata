@@ -8,6 +8,8 @@ export default class extends AbstractView {
 
   async getHtml() {
     return `
+    Last Updated: Feb 07, 2024
+
     <h1>Fuddata Terms of Use</h1>
     
     <h2>1. Introduction</h2>
