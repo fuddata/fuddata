@@ -9,7 +9,7 @@ You can find more detailed readme files about each component from subfolders.
 
 # Development
 ```shell
-wrangler pages dev --compatibility-date=2024-02-04 --port 8888 . --kv=SESSIONS
+wrangler pages dev --compatibility-date=2024-01-29 --port 8888 . --kv=SESSIONS
 ```
 
 # Components

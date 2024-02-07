@@ -68,10 +68,33 @@ export async function onRequest(context) {
     return jResp(1,'Action "validate" requires parameters "email" and "token"');
   }
 
+
+  // Validate Turnstile token if API KEY is defined
+  const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "Unknown";
+  const paramTurnstile = searchParams.get('turnstile')
+  if (env.TURNSTILE_API_KEY != null) {
+    if (paramTurnstile == null) {
+      return jResp(1,'Turnstile token required');
+    }
+    let formData = new FormData();
+    formData.append('secret', env.TURNSTILE_API_KEY);
+    formData.append('response', paramTurnstile);
+    formData.append('remoteip', cfConnectingIP);
+    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    const result = await fetch(url, {
+      body: formData,
+      method: 'POST',
+    });
+    const outcome = await result.json();
+    if (!outcome.success) {
+      return jResp(1,'Invalid Turnstile token');
+    }
+  }
+
+
   // Handle session validation
   // Session ID, email address hash and client IP address needs to match.
   // Extend session validation period to two hours when called first time.
-  const cfConnectingIP = request.headers.get("CF-Connecting-IP") || "Unknown";
   const ipHash = await sha256(cfConnectingIP);
   const emailHash = await sha256(paramEmail);
   if (paramAction == "validate") {

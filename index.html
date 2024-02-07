@@ -8,6 +8,7 @@
   <!-- TODO: Remove this when page is ready -->
   <link rel="stylesheet" href="/static/css/warn.css" />
   <script type="module" src="/static/js/index.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/g/ea25f566/api.js" async defer crossorigin></script>
 </head>
 <body>
   <div id="navbar">
@@ -25,6 +26,7 @@
         <form class="login_form_email" autocomplete="off">
           <label for="email" id="login_form_email_label">Email address:</label>
           <input type="email" id="login_form_email" name="email" required>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAARY-yrETZZ7W3HV"></div>
           <button type="submit">Request authentication token</button>
         </form>
       </div>

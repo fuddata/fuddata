@@ -2,6 +2,7 @@ import Dashboard from "./views/Dashboard.js";
 import Privacy from "./views/Privacy.js";
 import Terms from "./views/Terms.js";
 
+
 // Handle situation where user has already logged in on this browser session
 var serverToken = "";
 var sessionId = sessionStorage.getItem('sessionId');
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
   eForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const email = document.getElementById('login_form_email').value;
-    const apiUrl = `/api/login/?action=create&email=${encodeURIComponent(email)}`;
+    const apiUrl = `/api/login/?action=create&email=${encodeURIComponent(email)}&turnstile=${turnstile.getResponse()}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -117,11 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const email = document.getElementById('login_form_email').value;
     const userToken = document.getElementById('login_form_otp').value;
     const authToken = serverToken + userToken;
-    const apiUrl = `/api/login/?action=validate&email=${encodeURIComponent(email)}&token=${encodeURIComponent(authToken)}`;
+    const apiUrl = `/api/login/?action=validate&email=${encodeURIComponent(email)}&token=${encodeURIComponent(authToken)}&turnstile=${turnstile.getResponse()}`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
-        console.log('Data:', data);
         if (data.status == 0) {
           document.getElementById('login_form_container_otp').classList.toggle('hidden');
           document.getElementById('login_btn').classList.toggle('hidden');
