@@ -139,7 +139,6 @@ export async function onRequest(context) {
     return jResp(1,e);
   }
 
-
   // Handle email sending for user
   var body = {
     "template_id": env.EMAIL_TEMPLATE_ID,

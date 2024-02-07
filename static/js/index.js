@@ -3,6 +3,7 @@ import Privacy from "./views/Privacy.js";
 import Terms from "./views/Terms.js";
 
 var turnstileId = "";
+var formSubmitted = false;
 
 // Handle situation where user has already logged in on this browser session
 var serverToken = "";
@@ -100,6 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const eForm = document.querySelector('#login_form_container_email .login_form_email');
   eForm.addEventListener('submit', function(event) {
     event.preventDefault();
+
+    // Avoid double API calls if user double clicks button
+    if (formSubmitted == true) {
+      return;
+    }
+    formSubmitted = true;
+
     const email = document.getElementById('login_form_email').value;
     const apiUrl = `/api/login/?action=create&email=${encodeURIComponent(email)}&turnstile=${turnstile.getResponse()}`;
     fetch(apiUrl)
@@ -122,11 +130,19 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch((error) => {
         document.querySelector("#otperror").innerHTML = "Sending of email failed";
       });
+      formSubmitted = false;
   });
 
   const oform = document.querySelector('#login_form_container_otp .login_form');
   oform.addEventListener('submit', function(event) {
     event.preventDefault();
+
+    // Avoid double API calls if user double clicks button
+    if (formSubmitted == true) {
+      return;
+    }
+    formSubmitted = true;
+
     const email = document.getElementById('login_form_email').value;
     const userToken = document.getElementById('login_form_otp').value;
     const authToken = serverToken + userToken;
@@ -138,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('login_form_container_otp').classList.toggle('hidden');
           document.getElementById('login_btn').classList.toggle('hidden');
           document.getElementById('logout_btn').classList.toggle('hidden');
+          formSubmitted = false;
 
           // Make sure that browser refresh does not lost sessionId
           sessionStorage.setItem('sessionId', authToken);
@@ -145,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           document.querySelector("#otperror").innerHTML = "Invalid token";
         }
+        formSubmitted = false;
       })
       .catch((error) => {
         document.querySelector("#otperror").innerHTML = "Sending token failed";
