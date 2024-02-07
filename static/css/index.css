@@ -245,7 +245,7 @@ button:hover {
   right: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 200px;
+  width: 300px;
   /* height: 120px; */
   background-color: var(--menu-bg-color);
   text-align: left;
@@ -265,4 +265,5 @@ button:hover {
   border-radius: 4px;
   background-color: var(--bg-color);
   color: var(--text-color);
+  width: 280px;
 }
