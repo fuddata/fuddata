@@ -13,7 +13,7 @@ export async function onRequest(context) {
   const cfConnectingIP = request.headers.get("CF-Connecting-IP");
   const ipHash = await sha256(cfConnectingIP); 
   const body = JSON.stringify(await request.json());
-  const emailHash = sha256(body.email);
+  const emailHash = await sha256(body.email);
   await env.CONTACT.put(emailHash, body.message, {
     metadata: {
       replyTo: body.email,
