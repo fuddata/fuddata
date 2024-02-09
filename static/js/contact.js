@@ -1,4 +1,4 @@
-import { email, sessionId, turnstileId, renderTurnstile } from './global.js';
+import { email, sessionId } from './global.js';
 
 let formSubmitted = false;
 export const setupContactFormListener = () => {
@@ -14,8 +14,10 @@ export const setupContactFormListener = () => {
     document.getElementById('contact_message').readOnly = true;
 
     const msg = document.getElementById('contact_message').value;
+    const msgBytes = new TextEncoder().encode(msg);
+    const binString = String.fromCodePoint(...msgBytes);
     const body = {
-      message: msg,
+      message: btoa(binString),
       email: email,
     }
     const init = {

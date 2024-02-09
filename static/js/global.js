@@ -1,11 +1,7 @@
 export let sessionId = sessionStorage.getItem('sessionId');
+export let email = sessionStorage.getItem('email');
 export let serverToken = "";
 export let turnstileId = "";
-export let email = "";
-
-export const setSessionId = (id) => {
-    sessionId = id;
-};
 
 export const setServerToken = (token) => {
     serverToken = token;
@@ -17,8 +13,3 @@ export const renderTurnstile = () => {
     sitekey: '0x4AAAAAAARY-yrETZZ7W3HV',
   });
 };
-
-export const setEmail = (email) => {
-  email = email;
-};
-
