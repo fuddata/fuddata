@@ -1,6 +1,6 @@
-import { email, setEmail, sessionId, setSessionId, serverToken, setServerToken, turnstileId, renderTurnstile } from './global.js';
+import { sessionId, serverToken, setServerToken, turnstileId, renderTurnstile } from './global.js';
 
-let emailLocal = "";
+let email = "";
 let formSubmitted = false;
 export const checkSession = () => {
   if (sessionId !== null) {
@@ -29,7 +29,6 @@ export const logout = () => {
   document.getElementById('logout_btn').classList.add('hidden');
   document.getElementById('login_btn').classList.remove('hidden');
   sessionStorage.removeItem('sessionId');
-  sessionId = null;
   window.location.reload();
 };
 
@@ -38,9 +37,9 @@ export const handleLoginForm = (event) => {
   if (formSubmitted) return;
   formSubmitted = true;
 
-  emailLocal = document.getElementById('login_form_email').value;
-  setEmail(emailLocal);
-  const apiUrl = `/api/login/?action=create&email=${encodeURIComponent(emailLocal)}&turnstile=${turnstile.getResponse(turnstileId)}`;
+  email = document.getElementById('login_form_email').value;
+  sessionStorage.setItem('email', email);
+  const apiUrl = `/api/login/?action=create&email=${encodeURIComponent(email)}&turnstile=${turnstile.getResponse(turnstileId)}`;
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -66,7 +65,7 @@ export const handleOTPForm = (event) => {
 
   const userToken = document.getElementById('login_form_otp').value;
   const authToken = serverToken + userToken.replace(/\s/g, '');
-  const apiUrl = `/api/login/?action=validate&email=${encodeURIComponent(emailLocal)}&token=${encodeURIComponent(authToken)}`;
+  const apiUrl = `/api/login/?action=validate&email=${encodeURIComponent(email)}&token=${encodeURIComponent(authToken)}`;
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -74,10 +73,9 @@ export const handleOTPForm = (event) => {
         document.getElementById('login_form_container_otp').classList.add('hidden');
         document.getElementById('login_btn').classList.add('hidden');
         document.getElementById('logout_btn').classList.remove('hidden');
-        setSessionId(authToken);
         sessionStorage.setItem('sessionId', authToken);
-        serverToken = "";
         window.location.reload();
+        serverToken = "";
       } else {
         document.querySelector("#otperror").innerHTML = "Invalid token";
       }
