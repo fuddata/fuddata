@@ -4,6 +4,11 @@ import HelloWorld from "./views/HelloWorld.js";
 import Privacy from "./views/Privacy.js";
 import Terms from "./views/Terms.js";
 
+// Redirect to default page
+if(window.location.pathname === "/") {
+  history.pushState(null, null, '/hello-world');
+}
+
 export const navigateTo = url => {
   history.pushState(null, null, url);
   router();
@@ -12,7 +17,7 @@ export const navigateTo = url => {
 const routes = [
   { path: "/", view: Dashboard },
   { path: "/contact", view: Contact },
-  { path: "/hello", view: HelloWorld },
+  { path: "/hello-world", view: HelloWorld },
   { path: "/privacy", view: Privacy },
   { path: "/terms", view: Terms }
 ];
