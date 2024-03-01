@@ -1,0 +1,8 @@
+#hello_demo {
+  content:url(/static/img/hello-light.png);
+}
+@media (prefers-color-scheme: dark) {
+  #hello_demo {
+    content:url(/static/img/hello-dark.png);
+  }
+}

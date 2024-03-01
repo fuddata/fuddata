@@ -1,5 +1,6 @@
 import Dashboard from "./views/Dashboard.js";
 import Contact from "./views/Contact.js";
+import HelloWorld from "./views/HelloWorld.js";
 import Privacy from "./views/Privacy.js";
 import Terms from "./views/Terms.js";
 
@@ -11,6 +12,7 @@ export const navigateTo = url => {
 const routes = [
   { path: "/", view: Dashboard },
   { path: "/contact", view: Contact },
+  { path: "/hello", view: HelloWorld },
   { path: "/privacy", view: Privacy },
   { path: "/terms", view: Terms }
 ];
