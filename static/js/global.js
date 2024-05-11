@@ -4,7 +4,7 @@ export let serverToken = "";
 export let turnstileId = "";
 
 export const setServerToken = (token) => {
-    serverToken = token;
+  serverToken = token;
 };
 
 export const getTurnstileId = () => turnstileId;

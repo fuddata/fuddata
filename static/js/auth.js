@@ -55,7 +55,7 @@ export const handleLoginForm = (event) => {
     .catch((error) => {
       document.querySelector("#otperror").innerHTML = "Sending of email failed";
     });
-    formSubmitted = false;
+  formSubmitted = false;
 };
 
 export const handleOTPForm = (event) => {

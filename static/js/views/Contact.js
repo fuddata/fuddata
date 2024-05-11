@@ -8,7 +8,7 @@ export default class extends AbstractView {
   }
 
   async getHtml() {
-    if (sessionId != null ) {
+    if (sessionId != null) {
       return `
         <h1>Contact</h1>
         <div class="contact-form">

@@ -6,31 +6,36 @@
 
 /* Global settings with light and dark mode support */
 :root {
-  --text-color:#000000;
+  --text-color: #000000;
   --bg-color: #ffffff;
   --link-hover-bg-color: rgba(0, 0, 0, 0.05);
   --menu-bg-color: #e2dddd;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #121212;
-    --text-color:#ffffff;
+    --text-color: #ffffff;
     --link-hover-bg-color: rgba(255, 255, 255, 0.05);
     --menu-bg-color: #3b3b3b;
   }
 }
+
 html {
   font-family: Montserrat, sans-serif;
   font-size: 1em;
   color: var(--text-color);
   background-color: var(--bg-color);
 }
+
 body {
   margin: 0px;
 }
+
 a {
   color: var(--text-color);
 }
+
 a.navbar {
   padding: 5px 5px;
   text-decoration: none;
@@ -39,15 +44,19 @@ a.navbar {
   text-align: center;
   font-weight: 500;
 }
+
 a:hover {
   background-color: var(--link-hover-bg-color);
 }
+
 a.nohover:hover {
   background-color: var(--bg-color);
 }
+
 img {
   max-width: 100%;
 }
+
 button {
   border: none;
   border-radius: 4px;
@@ -60,6 +69,7 @@ button {
   padding-left: 13px;
   padding-right: 13px;
 }
+
 button:hover {
   background-color: #df9103;
 }
@@ -69,44 +79,55 @@ button:hover {
   #navbar_logo {
     width: 150px;
   }
+
   .navbar_links {
     width: 700px;
     top: 25px;
   }
+
   #navbar_buttons a {
     display: none;
   }
+
   #footer_text {
     width: 100%;
   }
+
   #content_border {
     width: 70%;
   }
 }
+
 @media screen and (max-width: 767px) {
   #navbar_logo {
     width: 100px;
   }
+
   .navbar_links {
     width: 100px;
     top: 60px;
     border-radius: 4px;
     background-color: var(--menu-bg-color);
   }
+
   .navbar_links a {
     display: none;
   }
+
   #navbar_buttons a {
     display: block;
   }
+
   .navbar_links.block a {
     display: block;
   }
+
   #footer_text {
     width: 100px;
     left: 150px;
     font-size: 0.7em;
   }
+
   #content_border {
     width: 100%;
   }
@@ -122,20 +143,24 @@ button:hover {
   height: 80px;
   border-bottom: 0.1em dotted rgba(128, 128, 128, 0.226);
 }
+
 #navbar_logo {
   position: fixed;
   left: 20px;
   top: 10px;
 }
+
 #navbar_logo:hover {
   background-color: var(--link-hover-bg-color);
 }
+
 .navbar_links {
   position: fixed;
   z-index: 10;
-  text-align: right; 
+  text-align: right;
   right: 90px;
 }
+
 #navbar_buttons {
   position: fixed;
   z-index: 10;
@@ -144,6 +169,7 @@ button:hover {
   text-align: right;
   margin: 10px;
 }
+
 #navbar_buttons a {
   font-size: 25px;
   text-decoration: none;
@@ -161,6 +187,7 @@ button:hover {
   border-top: 0.1em dotted rgba(128, 128, 128, 0.226);
   margin: 0px;
 }
+
 #footer_logo {
   position: fixed;
   bottom: 5px;
@@ -168,14 +195,17 @@ button:hover {
   width: 80px;
   padding: 0px 15px;
 }
+
 #footer_logo:hover {
   background-color: var(--link-hover-bg-color);
 }
+
 #footer_text {
   position: fixed;
   bottom: 20px;
   text-align: center;
 }
+
 #footer_link {
   position: fixed;
   bottom: 20px;
@@ -193,6 +223,7 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+
 #content {
   z-index: 1;
   margin-left: 20px;
@@ -208,14 +239,17 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+
 .contact-form form {
   display: flex;
   flex-direction: column;
 }
+
 .contact-form label[id="contact_message"] {
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
@@ -227,9 +261,11 @@ button:hover {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+
 .contact-form button {
   width: 150px;
 }
+
 #message {
   height: 100px;
   width: 530px;
@@ -239,6 +275,7 @@ button:hover {
 .hidden {
   display: none;
 }
+
 .login_form {
   position: fixed;
   z-index: 20;
@@ -252,12 +289,15 @@ button:hover {
   text-align: left;
   padding: 20px;
 }
+
 .login_form label {
   font-weight: bold;
 }
+
 .login_form #otperror {
   color: red;
 }
+
 .login_form input[type="email"],
 .login_form input[type="otp"] {
   padding: 10px;

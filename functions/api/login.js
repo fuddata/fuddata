@@ -5,18 +5,17 @@ async function newSessionId(env) {
   let sessionId = "";
   let isUnique = false;
   while (!isUnique) {
-		for (let i = 0; i < 12; i++) {
-			let randomNumber = Math.floor(Math.random() * 10);
-			sessionId += randomNumber.toString();
-		}
+    for (let i = 0; i < 12; i++) {
+      let randomNumber = Math.floor(Math.random() * 10);
+      sessionId += randomNumber.toString();
+    }
     try {
       const existingSession = await env.SESSIONS.get(sessionId);
       if (!existingSession) {
         isUnique = true;
       }
     }
-    catch (e)
-    {
+    catch (e) {
       isUnique = true;
     }
   }
@@ -32,13 +31,13 @@ export async function onRequest(context) {
   const paramEmail = searchParams.get('email');
   const paramToken = searchParams.get('token');
   if (paramAction != "create" && paramAction != "validate") {
-    return jResp(cors,1,'Action "' + paramAction + '" is not supported');
+    return jResp(cors, 1, 'Action "' + paramAction + '" is not supported');
   }
   if (paramAction == "create" && paramEmail == null) {
-    return jResp(cors,1,'Action "create" requires parameter "email"');
+    return jResp(cors, 1, 'Action "create" requires parameter "email"');
   }
   if (paramAction == "validate" && (paramEmail == null || paramToken == null)) {
-    return jResp(cors,1,'Action "validate" requires parameters "email" and "token"');
+    return jResp(cors, 1, 'Action "validate" requires parameters "email" and "token"');
   }
 
 
@@ -47,7 +46,7 @@ export async function onRequest(context) {
   const paramTurnstile = searchParams.get('turnstile')
   if (paramAction == "create" && env.TURNSTILE_API_KEY != null) {
     if (paramTurnstile == null) {
-      return jResp(cors,1,'Turnstile token required');
+      return jResp(cors, 1, 'Turnstile token required');
     }
     let formData = new FormData();
     formData.append('secret', env.TURNSTILE_API_KEY);
@@ -60,7 +59,7 @@ export async function onRequest(context) {
     });
     const outcome = await result.json();
     if (!outcome.success) {
-      return jResp(cors,1,'Invalid Turnstile token');
+      return jResp(cors, 1, 'Invalid Turnstile token');
     }
   }
 
@@ -74,11 +73,11 @@ export async function onRequest(context) {
   if (paramAction == "validate") {
     var { value, metadata } = await env.SESSIONS.getWithMetadata(paramToken);
     if (value == null) {
-      return jResp(cors,1,'Session ID "' + paramToken + '" is invalid');
+      return jResp(cors, 1, 'Session ID "' + paramToken + '" is invalid');
     }
     if (emailHash == value) {
       if (ipHash != metadata.ipHash) {
-        return jResp(cors,1,'Session is not valid for IP address: "' + cfConnectingIP + '"');
+        return jResp(cors, 1, 'Session is not valid for IP address: "' + cfConnectingIP + '"');
       }
       if (metadata.loggedIn == false) {
         await env.SESSIONS.put(paramToken, emailHash, {
@@ -90,9 +89,9 @@ export async function onRequest(context) {
           },
         });
       }
-      return jResp(cors,0,'valid');
+      return jResp(cors, 0, 'valid');
     }
-    return jResp(cors,1,'Hash "' + paramEmail + '" is invalid');
+    return jResp(cors, 1, 'Hash "' + paramEmail + '" is invalid');
   }
 
 
@@ -110,9 +109,8 @@ export async function onRequest(context) {
       },
     });
   }
-  catch (e)
-  {
-    return jResp(cors,1,e);
+  catch (e) {
+    return jResp(cors, 1, e);
   }
 
   // Handle email sending for user
@@ -141,10 +139,10 @@ export async function onRequest(context) {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
-      "Authorization":"Bearer " + env.SENDGRID_API_KEY,
+      "Authorization": "Bearer " + env.SENDGRID_API_KEY,
     },
   };
   await fetch("https://api.sendgrid.com/v3/mail/send", init);
-  return jResp(cors,0,serverToken);
+  return jResp(cors, 0, serverToken);
 
 };

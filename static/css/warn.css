@@ -3,17 +3,19 @@
     color: red;
     font-weight: bold;
 }
+
 @media screen and (min-width: 768px) {
     #navbar_warn {
-    font-size: 30px;
-    left: 250px;
-    top: 20px;
+        font-size: 30px;
+        left: 250px;
+        top: 20px;
     }
 }
+
 @media screen and (max-width: 767px) {
     #navbar_warn {
-    font-size: 20px;
-    left: 10px;
-    top: 60px;
+        font-size: 20px;
+        left: 10px;
+        top: 60px;
     }
 }

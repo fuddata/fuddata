@@ -37,7 +37,7 @@ export async function onRequest(context) {
   try {
     var { value, metadata } = await env[kvName].getWithMetadata(reqBody.guid);
     if (value === null) {
-      switch(reqBody.type) {
+      switch (reqBody.type) {
         case 1:
           value = 11;
           break;
@@ -51,11 +51,11 @@ export async function onRequest(context) {
       const todayDateAsString = today.toISOString().split('T')[0];
       await env[kvName].put(reqBody.guid, value, {
         metadata: {
-        countryCode: cfIpCountry || "",
-        firstStart: todayDateAsString,
+          countryCode: cfIpCountry || "",
+          firstStart: todayDateAsString,
         },
       });
-      return jResp(cors,value,todayDateAsString);
+      return jResp(cors, value, todayDateAsString);
     }
     if (value == 13 || value == 23) {
       const license = await writeLicense(reqBody.guid, env.LICENSE_PRIVATE_KEY);
@@ -63,8 +63,7 @@ export async function onRequest(context) {
     }
     return jResp(cors, Number(value), metadata.firstStart);
   }
-  catch (e)
-  {
+  catch (e) {
     return jResp(cors, 1, e.message);
   }
 };
@@ -86,23 +85,23 @@ export async function writeLicense(data, base64PrivKey) {
       false,
       ['sign']
     );
-    
+
     const signature = await crypto.subtle.sign(
       {
         name: 'ECDSA',
-        hash: {name: 'SHA-256'},
+        hash: { name: 'SHA-256' },
       },
       privateKey,
       new TextEncoder().encode(data)
     );
 
-  // Convert the signature from raw format to ASN.1 DER format
-  const signatureArray = new Uint8Array(signature);
-  const r = signatureArray.slice(0, signatureArray.length / 2);
-  const s = signatureArray.slice(signatureArray.length / 2);
-  const derSig = encodeDER(r, s);
+    // Convert the signature from raw format to ASN.1 DER format
+    const signatureArray = new Uint8Array(signature);
+    const r = signatureArray.slice(0, signatureArray.length / 2);
+    const s = signatureArray.slice(signatureArray.length / 2);
+    const derSig = encodeDER(r, s);
 
-  return arrayBufferToBase64(derSig);
+    return arrayBufferToBase64(derSig);
   } catch (err) {
     console.error("Error:", err);
     return '';

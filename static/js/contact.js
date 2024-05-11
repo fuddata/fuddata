@@ -2,7 +2,7 @@ import { email, sessionId } from './global.js';
 
 let formSubmitted = false;
 export const setupContactFormListener = () => {
-  document.addEventListener('submit', function(event) {
+  document.addEventListener('submit', function (event) {
     const cForm = event.target.closest('.contact-form #contact');
     if (!cForm) return;
 
@@ -43,5 +43,5 @@ export const setupContactFormListener = () => {
       .finally(() => {
         formSubmitted = false;
       });
-    });
+  });
 };
