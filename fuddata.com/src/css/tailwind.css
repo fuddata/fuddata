@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: FamiljenGrotesk;
+    src: url(https://static.fuddata.com/font/familjen-grotesk.woff2) format('woff2');
+  }
+
+  html {
+    font-family: FamiljenGrotesk, Sans-Serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body {}
+
+  a {
+    padding: 0px 5px;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .navbar-link:hover {
+    background-color: #F2F2F3;
+    opacity: 0.70;
+  }
+
+  .bg-gray-transparent {
+    background: rgba(224, 225, 226, 0.85);
+  }
+
+  .bg-img-contact {
+    background-image: url(https://static.fuddata.com/background-contact.webp);
+  }
+
+  .bg-img-front {
+    background-image: url(https://static.fuddata.com/background-frontpage.webp);
+  }
+
+  .h-min-200 {
+    min-height: 200px;
+  }
+
+  .h-min-350 {
+    min-height: 350px;
+  }
+
+  .w-max-300 {
+    max-width: 300px;
+  }
+
+  .w-min-600 {
+    min-width: 600px;
+  }
+
+  .h-250 {
+    height: 32rem;
+  }
+
+  .w-300 {
+    width: 36rem;
+  }
+
+  .top-5\/6 {
+    top: 83.333335%;
+  }
+
+  .right-1\/5 {
+    right: 20%;
+  }
+
+  li {
+    margin: 0;
+    padding: 0 0 0 35px;
+    list-style: none;
+    background-image: url("https://static.fuddata.com/icon-check.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 30px;
+  }
+
+  .bg-yellow-line {
+    background: rgba(217, 150, 46, 0.4);
+  }
+
+  .bg-gray-transparent {
+    background: rgba(224, 225, 226, 0.85);
+  }
+
+  .bg-blue-transparent {
+    background: rgba(5, 80, 152, 0.55);
+  }
+
+  .bg-landing-page-top {
+    background: linear-gradient(rgb(5, 80, 152, 0.55), #FFFFFF);
+  }
+
+  .bg-landing-page-bottom {
+    background: linear-gradient(#FFFFFF, rgb(5, 80, 152, 0.55));
+  }
+
+  .bg-img-blog {
+    background-image: url(https://static.fuddata.com/background-blog.webp);
+    height: 60vh;
+  }
+
+  @media screen and (orientation:landscape) and (max-device-height: 450px) {
+    .bg-img-blog {
+      height: 35vh;
+    }
+
+    .blog-logo {
+      visibility: hidden;
+    }
+  }
+
+  @media screen and (max-device-width: 450px) {
+
+    /* Make sure that login button stay in first row in small screens */
+    a {
+      padding: 0px 2px;
+    }
+  }
+
+
+  .blog-post-bg {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0px;
+    right: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .blog-post-title {
+    position: relative;
+    height: 100%;
+    width: 50%;
+  }
+
+  @media screen and (orientation:portrait) {
+    .blog-post-bg {
+      height: 50%;
+      width: 100%;
+      bottom: 0px;
+      top: auto;
+    }
+
+    .blog-post-title {
+      height: 50%;
+      width: 100%;
+    }
+  }
+
+  /* TODO: Replace with production configs */
+  .bg-img-blog1 {
+    background-image: url(https://static.fuddata.com/blog1/person-meditating-in-lake.webp);
+  }
+}
+
+@media (max-width: 976px) {
+  .lg-max\:hidden {
+    display: none;
+  }
+}

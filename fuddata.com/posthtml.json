@@ -1,0 +1,10 @@
+{
+    "input": "src/html/*.html",
+    "output": "dist",
+    "plugins": {
+        "posthtml-modules": {
+            "root": "./src/html",
+            "initial": true
+        }
+    }
+}

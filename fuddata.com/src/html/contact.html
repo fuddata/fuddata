@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Fuddata support from this page.">
+    <link rel="preload" href="https://static.fuddata.com/font/familjen-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <title>Contact | Fuddata</title>
+
+    <!-- TODO: Remove this when page is ready -->
+    <link rel="stylesheet" href="/static/css/warn.css" defer />
+
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <script type="module" src="/static/js/analytics.js"></script>
+    <script type="module" src="/static/js/main.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/g/ea25f566/api.js?render=explicit" async defer
+        crossorigin></script>
+    <script type="module" src="/static/js/contact.js"></script>
+</head>
+<module href="/components/nav.html"></module>
+
+<body class="bg-brand-black text-brand-grey">
+    <section id="hero" class="relative h-screen bg-cover bg-no-repeat bg-center bg-img-contact place-content-center">
+
+        <div
+            class="relative h-250 w-300 portrait:w-full m-auto place-content-center rounded-xl md:rounded-3xl bg-brand-black bg-opacity-55">
+            <h1 class="relative left-10 text-base md:text-2xl lg:text-5xl font-bold">Contact</h1>
+            <form id="contact-form" autocomplete="off" class="relative left-10">
+                <label for="message">Message:</label><br />
+                <textarea id="contact_message"
+                    class="h-48 w-96 portrait:w-5/6 bg-brand-grey dark:bg-brand-black text-brand-black dark:text-brand-grey"
+                    name="message" required></textarea><br />
+                <div id="ttWidget"></div>
+                <input type="checkbox" id="request-reply" name="request-reply">
+                <label for="request-reply"> I want reply to my message and allow my email address to be
+                    saved.</label><br>
+                <input type="text" id="contact-email" name="contact-email"
+                    class="bg-brand-grey dark:bg-brand-black text-brand-black dark:text-brand-grey hidden"><br />
+                <input type="checkbox" id="join-emaillist" class="hidden" name="join-emaillist">
+                <label id="label-emaillist" for="join-emaillist" class="hidden"> I would like to receive information
+                    about Fuddata future products.</label><br>
+                <br /><button id="contact_submit" class="btn text-xs md:text-base" type="submit">Send
+                    Message</button><br />
+                <label id="contact_info"></label>
+            </form>
+        </div>
+
+    </section>
+
+    <module href="/components/footer.html"></module>
+</body>
+
+</html>
