@@ -1,0 +1,10 @@
+.local
+website/.dev.vars
+website/.wrangler/
+website/dist/.wrangler/
+website/node_modules/
+website/package-lock.json
+website/dist/*.html
+website/dist/icon/*
+website/dist/img/*
+website/dist/static/css/tailwind.css

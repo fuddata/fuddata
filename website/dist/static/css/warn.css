@@ -1,0 +1,21 @@
+#navbar_warn {
+    position: absolute;
+    color: red;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+    #navbar_warn {
+        font-size: 30px;
+        left: 150px;
+        top: -5px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #navbar_warn {
+        font-size: 20px;
+        left: 100px;
+        top: 3px;
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Blog posts about IT security.">
+    <link rel="preload" href="/static/font/familjen-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <title>Blog | Fuddata</title>
+
+    <!-- TODO: Remove this when page is ready -->
+    <link rel="stylesheet" href="/static/css/warn.css" defer />
+
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <script type="module" src="/static/js/main.js"></script>
+    <script type="module" src="/static/js/posthog.js"></script>
+</head>
+<module href="/components/nav.html"></module>
+
+<body class="bg-brand-grey dark:bg-brand-black text-brand-black dark:text-brand-grey">
+    <section id="hero" class="relative bg-cover bg-no-repeat bg-center bg-img-blog">
+        <div
+            class="bg-brand-grey bg-opacity-55 relative w-3/4 sm:w-1/3 lg:w-1/3 m-auto top-36 lg:top-24 rounded-xl md:rounded-3xl blog-logo">
+            <img src="/assets/logo-fuddata-with-tagline.svg" alt="Fuddata Logo" />
+        </div>
+    </section>
+
+    <section id="hero" class="relative bg-cover pt-4 overflow-x-auto">
+        <div class="grid grid-cols-5 divide-x divide-gray-400 divide-dotted place-items-center w-min-600">
+
+            <div class="w-full">
+                <div class="h-min-200 lg:h-min-350 w-max-300 m-auto">
+                    <a href="/blog-example-post">
+                        <img src="/assets/thumpnail/minimalist-workspace-thumpnail.webp" alt="Minimalist Workspace" />
+                        The Benefits of Digital Detox.
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full">
+                <div class="h-min-200 lg:h-min-350 w-max-300 m-auto">
+                    <a href="/blog-example-post">
+                        <img src="/assets/thumpnail/peaceful-forest-thumpnail.webp" alt="Peaceful Forest" />
+                        Nature's Quiet Beauty.
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full">
+                <div class="h-min-200 lg:h-min-350 w-max-300 m-auto">
+                    <a href="/blog-example-post">
+                        <img src="/assets/thumpnail/person-meditating-in-lake-thumpnail.webp"
+                            alt="Person Meditating in Lake" />
+                        The Art of Mindfulness.
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full">
+                <div class="h-min-200 lg:h-min-350 w-max-300 m-auto">
+                    <a href="/blog-example-post">
+                        <img src="/assets/thumpnail/person-practicing-yoga-thumpnail.webp" alt="Hello World" />
+                        Finding Balance in a Busy World.
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full">
+                <div class="h-min-200 lg:h-min-350 w-max-300 m-auto">
+                    <a href="/blog-example-post">
+                        <img src="/assets/thumpnail/simple-wooden-table-thumpnail.webp" alt="Hello World" />
+                        Minimalism in Modern Living.
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <module href="/components/footer.html"></module>
+</body>
+
+</html>

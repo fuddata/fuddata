@@ -1,0 +1,3 @@
+[submodule "website/dist/assets"]
+	path = website/dist/assets
+	url = git@github.com:fuddata/website-assets.git
