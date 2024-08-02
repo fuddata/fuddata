@@ -86,6 +86,22 @@
     background: rgba(217, 150, 46, 0.4);
   }
 
+  .bg-gray-transparent {
+    background: rgba(224, 225, 226, 0.85);
+  }
+
+  .bg-blue-transparent {
+    background: rgba(5, 80, 152, 0.55);
+  }
+
+  .bg-landing-page-top {
+    background: linear-gradient(rgb(5, 80, 152, 0.55), #FFFFFF);
+  }
+
+  .bg-landing-page-bottom {
+    background: linear-gradient(#FFFFFF, rgb(5, 80, 152, 0.55));
+  }
+
   .bg-img-blog {
     background-image: url(/assets/background-blog.webp);
     height: 60vh;
