@@ -1,2 +1,2 @@
-CORS="http://localhost:8888"
+CORS="http://192.168.8.40:8888"
 LICENSE_PRIVATE_KEY=""

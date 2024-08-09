@@ -1,4 +1,6 @@
 .local
+go-modules/go-modules
+go-modules/go-modules.exe
 website/.dev.vars
 website/.wrangler/
 website/dist/.wrangler/

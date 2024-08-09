@@ -13,6 +13,7 @@ Contibutions are very welcome but please open issue for discussion first.
 * Privacy friendly CAPTCHA alternative by [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/)
 * Privacy-first Web Analytics by [Clouflare](https://blog.cloudflare.com/privacy-first-web-analytics/)
 * Cookieless and anonymous usage tracking with EU hosted [PostHog](https://posthog.com/tutorials/cookieless-tracking)
+* Software licensing with private & public key pairs.
 
 # Development
 ```shell
