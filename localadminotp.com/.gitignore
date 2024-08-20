@@ -1,0 +1,11 @@
+.dev.vars
+.wrangler/
+dist/.wrangler/
+node_modules/
+package-lock.json
+dist/*.html
+dist/blog/*.html
+dist/icon/*
+dist/img/*
+dist/node_modules/*
+dist/static/css/tailwind.css

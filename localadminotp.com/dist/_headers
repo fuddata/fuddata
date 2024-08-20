@@ -1,0 +1,16 @@
+/*
+  Content-Security-Policy: default-src 'none'; base-uri 'none'; object-src 'none'; script-src 'self' https://www.fuddata.com/ https://snap.licdn.com/ https://posthog.fuddata.com/ https://static.cloudflareinsights.com/ https://challenges.cloudflare.com/; frame-src https://challenges.cloudflare.com; connect-src 'self' https://www.fuddata.com/ https://px.ads.linkedin.com/ https://posthog.fuddata.com/ https://cloudflareinsights.com/; img-src 'self' https://static.fuddata.com/ https://www.linkedin.com/ https://px.ads.linkedin.com/; style-src 'self'; font-src https://static.fuddata.com/; form-action 'self'; frame-ancestors 'none'; media-src 'self' https://static.fuddata.com/;
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+
+/*.js
+  Content-Type: application/javascript; charset=utf-8
+
+/favicon.ico
+  ! Content-Security-Policy
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/css/*
+  ! Content-Security-Policy

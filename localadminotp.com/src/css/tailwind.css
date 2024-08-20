@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: FamiljenGrotesk;
+    src: url(https://static.fuddata.com/font/familjen-grotesk.woff2) format('woff2');
+  }
+
+  html {
+    font-family: FamiljenGrotesk, Sans-Serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {}
+
+  a {
+    padding: 0px 5px;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .navbar-link:hover {
+    background-color: #F2F2F3;
+    opacity: 0.70;
+  }
+
+  .bg-gray-transparent {
+    background: rgba(224, 225, 226, 0.85);
+  }
+
+  .bg-img-contact {
+    background-image: url(https://static.fuddata.com/background-contact.webp);
+  }
+
+  .bg-img-front {
+    background-image: url(https://static.fuddata.com/background-frontpage.webp);
+  }
+
+  .h-min-200 {
+    min-height: 200px;
+  }
+
+  .h-min-350 {
+    min-height: 350px;
+  }
+
+  .w-max-300 {
+    max-width: 300px;
+  }
+
+  .w-min-600 {
+    min-width: 600px;
+  }
+
+  .h-250 {
+    height: 32rem;
+  }
+
+  .w-300 {
+    width: 36rem;
+  }
+
+  .top-5\/6 {
+    top: 83.333335%;
+  }
+
+  .right-1\/5 {
+    right: 20%;
+  }
+
+  .check-icon {
+    margin: 0;
+    padding: 0 0 0 45px;
+    list-style: none;
+    background-image: url("https://static.fuddata.com/icon-check.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 30px;
+  }
+
+  .bg-yellow-line {
+    background: rgba(217, 150, 46, 0.4);
+  }
+
+  .bg-gray-transparent {
+    background: rgba(224, 225, 226, 0.85);
+  }
+
+  .bg-blue-transparent {
+    background: rgba(5, 80, 152, 0.75);
+  }
+
+  .bg-landing-page-top {
+    background: linear-gradient(rgb(5, 80, 152, 0.75), #F2F2F2);
+  }
+
+  .bg-landing-page-bottom {
+    background: linear-gradient(#F2F2F2, rgb(5, 80, 152, 0.75));
+  }
+
+  .bg-img-blog {
+    background-image: url(https://static.fuddata.com/background-blog.webp);
+    height: 60vh;
+  }
+
+  @media screen and (orientation:landscape) and (max-device-height: 450px) {
+    .bg-img-blog {
+      height: 35vh;
+    }
+
+    .blog-logo {
+      visibility: hidden;
+    }
+  }
+
+  @media screen and (max-device-width: 450px) {
+
+    /* Make sure that login button stay in first row in small screens */
+    a {
+      padding: 0px 2px;
+    }
+  }
+
+
+  .blog-post-bg {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0px;
+    right: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .blog-post-title {
+    position: relative;
+    height: 100%;
+    width: 50%;
+  }
+
+  @media screen and (orientation:portrait) {
+    .blog-post-bg {
+      height: 50%;
+      width: 100%;
+      bottom: 0px;
+      top: auto;
+    }
+
+    .blog-post-title {
+      height: 50%;
+      width: 100%;
+    }
+  }
+
+  .bg-img-blog1 {
+    background-image: url(https://static.fuddata.com/blog1/password-hustle.webp);
+  }
+  .bg-img-blog2 {
+    background-image: url(https://static.fuddata.com/blog2/it-security-threats.webp);
+  }
+  .bg-img-blog3 {
+    background-image: url(https://static.fuddata.com/blog3/remembering-passwords.webp);
+  }
+  .bg-img-blog4 {
+    background-image: url(https://static.fuddata.com/blog4/it-mishap.webp);
+  }
+  .bg-img-blog5 {
+    background-image: url(https://static.fuddata.com/blog5/social-engineering.webp);
+  }
+}
+
+@media (max-width: 976px) {
+  .lg-max\:hidden {
+    display: none;
+  }
+}
+
+#playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#playButton.hidden {
+  display: none;
+}
