@@ -14,22 +14,52 @@ export async function onRequest(context) {
         return jResp(cors, 1, 'Turnstile verification failed');
     }
 
-    const cfIPCountry = request.headers.get("CF-IPCountry");
-    const body = await request.json();
-    const emailHash = await sha256(body.email);
-    await env.CONTACT.put(emailHash, body.message, {
-        metadata: {
-            replyTo: body.email,
-            country: cfIPCountry,
-            timestamp: new Date().getTime(),
-            expirationTtl: 2592000,
-        },
-    });
+    const cfIpCountry = request.headers.get("CF-IPCountry");
+    const cfIPCity = request.headers.get("CF-IPCity");
+    const cfTimezone = request.headers.get("CF-Timezone");
+    const reqBody = await request.json();
+    const emailHash = await sha256(reqBody.email);
 
-    if (body.joinMaillist) {
-        await env.MAILLIST.put(emailHash, body.email, {
+    var emailBody = {
+        "template_id": "d-d6931aacfb2149ef8a11c4e8b6afccf0",
+        "personalizations": [
+          {
+            "to": [
+              {
+                "email": env.EMAIL_TO_CONTACT,
+              }
+            ],
+            "dynamic_template_data": {
+              "message": atob(reqBody.message),
+              "email": reqBody.email,
+              "country": cfIpCountry,
+              "city": cfIPCity,
+              "timezone": cfTimezone,
+            }
+          }
+        ],
+        "from": {
+          "email": env.EMAIL_FROM_ADDRESS,
+          "name": env.EMAIL_FROM_NAME,
+        }
+    };
+    var init = {
+    body: JSON.stringify(emailBody),
+    method: "POST",
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization":"Bearer " + env.SENDGRID_API_KEY,
+    },
+    };
+    await fetch("https://api.sendgrid.com/v3/mail/send", init);
+
+    if (reqBody.joinMaillist) {
+        await env.MAILLIST.put(emailHash, reqBody.email, {
             metadata: {
-                country: cfIPCountry,
+                countryCode: cfIpCountry || metadata.countryCode,
+                city: cfIPCity || metadata.city,
+                timezone: cfTimezone || metadata.timezone,
                 timestamp: new Date().getTime(),
                 source: "ContactForm",
             },

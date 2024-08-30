@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Local Admin OTP installation registration" />
+    <meta name="robots" content="noindex" />
+    <link rel="preload" href="https://static.fuddata.com/font/familjen-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <title>Registration | Local Admin OTP</title>
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <!--
+    <script type="module" src="https://www.fuddata.com/static/js/analytics.js"></script>
+    -->
+    <script type="module" src="https://www.fuddata.com/static/js/main.js"></script>
+    <script type="module" src="https://www.fuddata.com/static/js/registration.js"></script>
+</head>
+<module href="/components/nav.htm"></module>
+<body class="text-brand-grey">
+    <section id="register" class="relative h-full lg:h-screen bg-cover bg-center bg-repeat-x bg-img-contact place-content-center">
+        <div class="relative w-7/12 portrait:w-full landscape:m-auto divide-gray-400 rounded-xl md:rounded-3xl bg-brand-black bg-opacity-75">
+            <div class="relative h-full w-full p-20 text-center">
+                <p class="text-2xl">Thank you for registering your Local Admin OTP installation!</p>
+                <br />
+                <p class="">If you have a moment, please give it five stars in
+                    <a href="ms-windows-store://review/?ProductId=xp88d6k9qw82bm" alt="Get it from Microsoft" class="underline hover:bg-brand-grey hover:text-black" target="_blank">Microsoft Store</a></p>
+                <p class="">Your input helps us secure as many computers as possible.</p>
+                <br />
+                <form id="registration-form" autocomplete="off">
+                    <div id="email-section" class="grid grid-cols-2 w-96 m-auto">
+                        <label for="registration-email" class="m-auto">Email address</label>
+                        <input id="registration-email" name="Email address" placeholder="Email address" class="w-56 h-10 p-2 m-2 text-black" required></input>
+                        <br />
+                        <br />
+                        <label id="invalid-email" for="registration-email" class="p-1 text-red-600 bg-gray-100 font-bold hidden">Invalid email address.<br /></label>
+                    </div>
+                    <input type="checkbox" id="agree-terms" name="agree-terms" required>
+                    <label for="agree-terms"> I agree to the Fuddata<a href="https://www.fuddata.com/terms" class="underline hover:bg-brand-grey hover:text-black" target="_blank">Terms of Use</a> and acknowledge its<a href="https://www.fuddata.com/privacy" class="underline hover:bg-brand-grey hover:text-black" target="_blank">Privacy Statement</a><br />
+                    (Only SHA256 hash of email address will be stored)</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="join-emaillist" name="join-emaillist">
+                    <label id="label-emaillist" for="join-emaillist"> I would like to opt-in to receive information about Fuddata future products.<br />
+                        (You can unsubscribe by clicking link in any of those emails).</label><br>
+                    <br />
+                    <button id="registration-submit" type="submit" value="registration" class="relative rounded-xl md:rounded-3xl pl-14 pr-14 pt-4 pb-4 bg-brand-blue hover:bg-brand-blue2 text-brand-grey text-xl">Register installation</button>
+                    <br />
+                    <label id="registration-success" class="text-green-500 text-xl hidden"></label>
+                    <label id="registration-failed" class="text-red-500 bg-gray-100 text-xl hidden"></label>
+                    <br />
+                    <label id="registration-info" class="hidden"></label>
+                </form>
+            </div>
+        </div>
+    </section>
+    <module href="/components/footer.htm"></module>
+</body>
+</html>

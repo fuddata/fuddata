@@ -77,10 +77,15 @@
     margin: 0;
     padding: 0 0 0 45px;
     list-style: none;
-    background-image: url("https://static.fuddata.com/icon-check.svg");
     background-repeat: no-repeat;
     background-position: left;
     background-size: 30px;
+  }
+  .check-icon-blue {
+    background-image: url("https://static.fuddata.com/icon-check-blue.svg");
+  }
+  .check-icon-yellow {
+    background-image: url("https://static.fuddata.com/icon-check-yellow.svg");
   }
 
   .bg-yellow-line {
@@ -125,7 +130,6 @@
       padding: 0px 2px;
     }
   }
-
 
   .blog-post-bg {
     position: absolute;

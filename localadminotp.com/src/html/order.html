@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Order Local Admin OTP." />
+    <meta name="robots" content="noindex" />
+    <link rel="preload" href="https://static.fuddata.com/font/familjen-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <title>Order | Local Admin OTP</title>
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <!--
+    <script type="module" src="https://www.fuddata.com/static/js/analytics.js"></script>
+    -->
+    <script type="module" src="https://www.fuddata.com/static/js/main.js"></script>
+    <script type="module" src="https://www.fuddata.com/static/js/order.js"></script>
+</head>
+<module href="/components/nav.htm"></module>
+<body class="text-brand-grey">
+    <section id="order" class="relative h-full lg:h-screen bg-cover bg-center bg-repeat-x bg-img-contact place-content-center">
+        <div class="relative w-full xl:w-3/4 landscape:m-auto grid grid-cols-1 lg:grid-cols-2 divide-x divide-gray-400 rounded-xl md:rounded-3xl bg-brand-black bg-opacity-55">
+            <div class="relative h-full w-full p-20 text-center">
+                <p class="text-xl">Order</p>
+                <p id="price" class="text-3xl lg:text-4xl font-bold">[price]</p>
+                <br /><br />
+                <div class="grid grid-cols-1 divide-y divide-gray-400">
+                    <p id="app-price">[app price]</p>
+                    <div>
+                        <p id="sub-total">[sub total]</p>
+                        <br />
+                        <p id="tax-rate">[tax rate]</p>
+                    </div>
+                    <p id="total-due">[total due]</p>
+                    <div>
+                        <br />
+                        <label for="license-type">License type</label>
+                        <br />
+                        <input id="license-type" name="License type" class="w-72 h-10 p-2 m-2 text-black text-center" placeholder="" disabled></input>
+                        <br />
+                        <label for="client-id">Client ID</label><br />
+                        <input id="client-id" name="Client ID" class="w-96 h-10 p-2 m-2 text-black text-center" placeholder="" disabled></input>
+                    </div>
+                </div>
+            </div>
+            <div class="relative h-full w-full p-20">
+                <p class="text-xl">Customer information</p>
+                <form id="order-form" autocomplete="off">
+                    <div class="grid grid-cols-2">
+                        <label for="order-country" class="m-auto">Country</label>
+                        <select id="order-country" name="Country" class="w-48 h-10 p-2 m-2 text-black" required></select>
+                        <p id="country-warning" class="hidden p-5 text-red-600 bg-gray-100">Unfortunately we are not
+                            allowed to receive payments from your country.<br /><br />Feel free to contact us in
+                            <a href="/contact" title="Contact" class="underline hover:bg-brand-black">here</a>
+                            and explaing your situation.
+                        </p>
+                    </div>
+                    <br />
+                    <div id="vat-section" class="hidden">
+                        <p>Fill your VAT number and number click <b>Verify
+                                VAT number</b> button to automatically fill company name and billing address with data
+                            provided by <a href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
+                                class="hover:bg-brand-black underline" target="_blank" rel="noopener noreferrer"
+                                title="VIES VAT number validation">VIES VAT number validation</a></p>
+                        <label for="vat-id">VAT number</label>
+                        <input id="vat-id" name="VAT number" class="w-48 h-10 p-2 m-2 text-black" placeholder="VAT number" required></input>
+                        <br />
+                        <label id="var-error" for="vat-id" class="p-1 text-red-600 bg-gray-100 font-bold hidden">Invalid VAT number<br /></label>
+                        <button id="vat-verify" type="submit" value="vat-verify"
+                            class="relative rounded-xl md:rounded-3xl pl-10 pr-10 pt-2 pb-2 bg-brand-blue hover:bg-brand-blue2 text-brand-grey text-xl">
+                            Verify VAT number</button>
+                    </div>
+                    <br />
+                    <div id="company-section" class="grid grid-cols-2">
+                        <label for="order-company" class="m-auto">Company name</label>
+                        <input id="order-company" name="Company name" placeholder="Company name"
+                            class="w-48 h-10 p-2 m-2 text-black" required></input>
+                        <br />
+                    </div>
+                    <div id="address-section">
+                        <label for="address">Billing address</label>
+                        <textarea id="address" name="Billing address" placeholder="Billing address"
+                            class="w-full h-40 p-2 m-2 overflow-hidden resize-none text-black" disabled>
+                        </textarea>
+                        <br />
+                    </div>
+                    <div id="reference-section" class="grid grid-cols-2">
+                        <label for="order-reference" class="m-auto">Invoice reference</label>
+                        <textarea id="order-reference" name="Invoice reference" placeholder="Invoice reference"
+                            class="w-48 h-16 p-2 m-2 overflow-hidden resize-none text-black"></textarea>
+                        <br />
+                    </div>
+                    <div id="email-section" class="grid grid-cols-2">
+                        <label for="order-email" class="m-auto">Email address</label>
+                        <input id="order-email" name="Email address" placeholder="Email address"
+                            class="w-48 h-10 p-2 m-2 text-black" required></input>
+                        <br />
+                        <label id="invalid-email" for="order-email"
+                            class="p-1 text-red-600 bg-gray-100 font-bold hidden">Invalid email address.<br /></label>
+                    </div>
+                    <div id="message-section" class="grid grid-cols-2">
+                        <label for="order-message" class="m-auto">Message for us</label>
+                        <textarea id="order-message" name="Message for us" placeholder="Voluntary message for us"
+                            class="w-48 h-16 p-2 m-2 overflow-hidden resize-none text-black"></textarea>
+                        <br />
+                    </div>
+                    <input type="checkbox" id="agree-terms" name="agree-terms" required>
+                    <label for="agree-terms"> I agree to the Fuddata<a href="https://www.fuddata.com/terms" class="underline hover:bg-brand-grey hover:text-black" target="_blank">Terms of Use</a> and acknowledge its<a href="https://www.fuddata.com/privacy" class="underline hover:bg-brand-grey hover:text-black" target="_blank">Privacy Statement</a><br /></label>
+                    <br />
+                    <input type="checkbox" id="join-emaillist" name="join-emaillist">
+                    <label id="label-emaillist" for="join-emaillist"> I would like to opt-in to receive information about Fuddata future products. (You can unsubscribe by clicking link in any of those emails).</label><br>
+                    <br />
+                    <br />
+                    <button id="order-submit" type="submit" value="order"
+                        class="relative rounded-xl md:rounded-3xl pl-14 pr-14 pt-4 pb-4 bg-brand-yellow hover:bg-brand-yellow2 text-brand-grey text-xl">Send order</button>
+                    <br />
+                    <label id="order-success" class="text-green-500 text-2xl text-center hidden"></label>
+                    <label id="order-failed" class="text-red-500 bg-gray-100 text-xl text-center hidden"></label>
+                    <br />
+                    <label id="order-info" class="text-green-500 text-center hidden"></label>
+                </form>
+            </div>
+        </div>
+    </section>
+    <module href="/components/footer.htm"></module>
+</body>
+</html>
