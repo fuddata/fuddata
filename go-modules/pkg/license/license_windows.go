@@ -37,6 +37,16 @@ func getLicenseKey(company, app string) (string, error) {
 	return license, nil
 }
 
+func delLicenseKey(company, app string) error {
+	k, _, err := registry.CreateKey(registry.LOCAL_MACHINE, `SOFTWARE\`+company+`\`+app, registry.ALL_ACCESS)
+	if err != nil {
+		return errors.New("cannot open " + app + " registry key")
+	}
+	defer k.Close()
+	k.DeleteValue("LicenseKey")
+	return nil
+}
+
 func setLicenseKey(company, app, licenseKey string) error {
 	k, _, err := registry.CreateKey(registry.LOCAL_MACHINE, `SOFTWARE\`+company+`\`+app, registry.READ+registry.WRITE)
 	if err != nil {

@@ -73,6 +73,10 @@ func GetLicenseStatus(company, app, apiUrl, pubKey string) (int, bool, int, stri
 		validLicense, err = verifyLicKey(clientID, pubKey, license)
 		if err != nil || !validLicense {
 			log.Printf("GetLicenseStatus: Local license key is invalid. Requesting new key.\r\n")
+			err = delLicenseKey(company, app)
+			if err != nil {
+				log.Printf("GetLicenseStatus: Invalid local key.\r\n")
+			}
 		}
 		if validLicense {
 			log.Printf("GetLicenseStatus: Local license key is valid\r\n")

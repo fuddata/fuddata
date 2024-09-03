@@ -8,6 +8,10 @@ func getLicenseKey(company, app string) (string, error) {
 	return "", fmt.Errorf("linux is not yet supported")
 }
 
+func delLicenseKey(company, app string) error {
+	return nil
+}
+
 func setLicenseKey(company, app, licenseKey string) error {
 	return nil
 }
