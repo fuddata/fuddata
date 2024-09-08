@@ -1,5 +1,5 @@
-# Fuddata webpage
-This repository contains open source parts of of Fuddata webpage.
+# Fuddata webpages and applications
+This repository contains open source parts of of Fuddata webpages and applications.
 
 For us security and high performance are most important design priciples which why we built this from scratch without using UI frameworks, minimized usage of 3rd party libraries, we only use cherry picked 3rd party services and we made whole codebase publicly available as open source so anyone can review it.
 
@@ -16,7 +16,7 @@ Contibutions are very welcome but please open issue for discussion first.
 
 # Development
 ```shell
-cd website
+cd fuddata.com
 npm run watch
 npm run serve
 ```

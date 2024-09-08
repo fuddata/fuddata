@@ -5,9 +5,7 @@ import { getCors } from "../common.js";
 export async function onRequest(context) {
     const request = context.request;
     let cors = getCors(context);
-
-    // FixMe: Remove default value
-    const cfIPCountry = request.headers.get("CF-IPCountry") || 'US';
+    const cfIPCountry = request.headers.get("CF-IPCountry") || '';
     const countryName = countries[cfIPCountry] || cfIPCountry;
 
     return Response.json(

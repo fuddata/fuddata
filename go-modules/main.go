@@ -10,7 +10,7 @@ import (
 const (
 	company       = "Fuddata"
 	application   = "Hello World"
-	licenseApiUrl = "http://192.168.8.40:8887/api/license"
+	licenseApiUrl = "https://www.fuddata.com/api/license"
 	licPubKey     = ``
 )
 

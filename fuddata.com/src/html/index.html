@@ -15,32 +15,31 @@
 </head>
 <module href="/components/nav.html"></module>
 
-<body class="bg-brand-grey dark:bg-brand-black text-brand-grey">
+<body class="bg-brand-grey dark:bg-brand-black text-brand-grey text-center text-xs lg:text-base">
     <section id="hero" class="relative h-screen bg-cover bg-no-repeat bg-center bg-img-front">
         <div class="absolute top-20 h-3/4 right-1/5 w-1.5 bg-yellow-line lg-max:hidden"></div>
         <div class="absolute top-40 w-3/4 left-48 h-1.5 bg-yellow-line lg-max:hidden"></div>
         <div class="relative grid h-screen place-items-center">
             <div class="container">
                 <div class="w-full p-4">
-                    <div
-                        class="relative inline-block p-4 md:p-6 lg:p-8 rounded-xl md:rounded-3xl bg-brand-black bg-opacity-55">
+                    <div class="relative inline-block p-4 md:p-6 lg:p-8 rounded-xl md:rounded-3xl bg-brand-black bg-opacity-55">
                         <h1 class="text-base md:text-2xl lg:text-5xl font-bold">We design security</h1>
                     </div>
                 </div>
-                <div class="w-full pt-4 pl-10">
-                    <div
-                        class=" relative inline-block p-4 md:p-6 lg:p-8 rounded-xl md:rounded-3xl bg-brand-black bg-opacity-55">
-                        <div class="text-sm md:text-lg lg:text-2xl">
-                            <ul>
-                                <li>... Content coming soon ...</li>
-                            </ul>
-                            <!--
-                            <a href="https://github.com/fuddata/fuddata" alt="Source code link" class="js-link"
-                                target="_blank" rel="noopener noreferrer"><button type="submit"
-                                    class="btn absolute bottom-4 right-4 text-xs md:text-base">View
-                                    code</button></a>
-                            -->
-                        </div>
+                <div class="w-3/4 m-auto grid grid-rows-1 landscape:grid-flow-col gap-8 rounded-xl md:rounded-3xl bg-brand-black bg-opacity-55">
+                    <div class="relative w-fit m-auto pt-2">
+                        <video id="video" width="396" height="256"
+                            poster="https://static.fuddata.com/placeholder-local-admin-otp-video.webp" preload="metadata" controls>
+                            <source src="https://static.fuddata.com/video/local-admin-otp-promo.mp4" type="video/mp4" async defer>
+                            Your browser does not support the video tag.
+                        </video><br />
+                    </div>
+                    <div class="p-4">
+                        <img src="https://static.fuddata.com/logo-local-admin-otp-with-tagline.svg" alt="Local Admin OTP logo" width="500" />
+                        <p>Local Admin OTP is your ultimate solution for secure and hassle-free admin access.</p>
+                        <p>Local Admin OTP simplifies your login process while safeguarding your devices.</p>
+                        <br />
+                        <p>Product web site: <a href="https://www.localadminotp.com" class="js-link underline navbar-link" target="_blank">www.localadminotp.com</a</p>
                     </div>
                 </div>
             </div>
