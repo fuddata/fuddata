@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     var newURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    window.history.replaceState({ path: newURL }, '', newURL);
+    if (window.location.pathname != "/order" && window.location.pathname != "/registration") {
+        console.log("Path name: " + window.location.pathname);
+        window.history.replaceState({ path: newURL }, '', newURL);
+    }
     const toggleMenu = () => {
         const navbarLinks = document.getElementById('navbar-links');
         if (navbarLinks) {
@@ -27,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 function openLink(url, target) {
     const sessionId = document.getElementById('session-id').innerText;
-    let rel = "";
     fetch("https://www.fuddata.com/api/link?url=" + url + "&sessionId=" + sessionId)
         .then(response => response.json())
         .then(data => {
