@@ -5,7 +5,7 @@
     "build:css-prod": "npx tailwindcss -i src/css/tailwind.css -o dist/static/css/tailwind.css --minify",
     "build:html": "posthtml -c posthtml.json",
     "build:html-prod": "posthtml -c posthtml.json",
-    "serve": "wrangler pages dev dist --compatibility-date=2024-01-29 --ip 0.0.0.0 --port 8887 --kv=STATISTICS --kv=CONTACT --kv=MAILLIST --kv=LICENSE-HELLOWORLD",
+    "serve": "wrangler pages dev dist --compatibility-date=2024-01-29 --ip 0.0.0.0 --port 8887 --kv=STATISTICS --kv=MAILLIST --kv=LICENSE-HELLOWORLD",
     "watch:css1": "onchange \"src/css/tailwind.css\" -- npm run build:css",
     "watch:css2": "onchange \"dist/*.html\" -- npm run build:css",
     "watch:html": "onchange \"src/html\" -- npm run build:html",
