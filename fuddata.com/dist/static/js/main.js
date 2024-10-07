@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     var newURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    if (window.location.pathname != "/order" && window.location.pathname != "/registration") {
+    if (window.location.pathname != "/order" && window.location.pathname != "/registration" && !window.location.search.indexOf("utm_source")) {
         console.log("Path name: " + window.location.pathname);
         window.history.replaceState({ path: newURL }, '', newURL);
     }
