@@ -21,7 +21,7 @@ if (window.location.href.startsWith("https://www.")) {
     } else {
         const source = params.get('utm_source');
         const medium = params.get('utm_medium');
-        const campaign = params.get('utm_campaign');
+        const campaign = params.get('campaign_id');
         apiUrl += "true&source=" + source + "&medium=" + medium + "&campaign=" + campaign;
         apiUrl += "&sessionId=" + sessionId;
     }
